@@ -21,7 +21,7 @@ int simplify(int p) {
 }
 
 void map_add(map<radicand, multiple> &i, size_t r, int m) {
-  if (i.count(r)) i.at(r) += r * m;
+  if (i.count(r)) i.at(r) += m;
   else i.insert(pair<radicand, multiple>(r, m));
 }
 
