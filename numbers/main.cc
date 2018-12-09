@@ -9,14 +9,14 @@ using namespace std;
 
 int main() {
   map<radicand, multiple> i {
-    {2, 3}, {3, 1}
+    {3, 1}
   };
   map<radicand, multiple> j {
-    {5, 1}, {6, -1}
+    {3, -1}
   };
   Sqrt a {2, i};
   cout << "a is " << a.pretty_print() << endl;
-  Sqrt b {-1, j};
+  Sqrt b {0, {{2, 0}}};
   cout << "b is " << b.pretty_print() << endl;
   Sqrt c = a - b;
   cout << "a-b is " << c.pretty_print() << endl;

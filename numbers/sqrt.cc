@@ -3,6 +3,7 @@
 #include <iostream>
 #include <utility>
 #include <cmath>
+#include <stdexcept>
 #include "sqrt.h"
 #include "fraction.h"
 
@@ -70,6 +71,7 @@ Sqrt &Sqrt::operator=(Sqrt other) {
 }
 
 string Sqrt::pretty_print() {
+  if (rational == 0 && irrational.size() == 0) return "(0)";
   string rat = (rational? to_string(rational) : "");
   string irr = "";
   for (const auto &p : irrational) {
@@ -116,5 +118,14 @@ Sqrt Sqrt::operator*(const Sqrt &other) {
   return { res_r, res_i };
 }
 
-Frac Sqrt::operator/(const Sqrt &other) { return {*this, other}; }
+Frac Sqrt::operator/(const Sqrt &other) {
+  try {
+    return {*this, other}; 
+  }
+  catch (domain_error &r) {
+    cerr << r.what() << endl;
+    throw;
+  }
+  return {{1, {}}, {1, {}}};
+}
 
