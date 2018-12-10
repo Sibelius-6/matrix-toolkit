@@ -36,10 +36,15 @@ static void simplify(Sqrt &n, Sqrt &d) {
     return;
   }
   int gcdd = gcd(abs(n.rational), abs(d.rational));
-  if (gcdd == 1) return;
 
-  for (auto p : n.irrational) gcdd = gcd(gcdd, abs(p.second));
+  bool all_negative = n.rational < 0 && d.rational < 0;
 
+  for (auto p : n.irrational) {
+    if (all_negative) all_negative = p.second < 0; 
+    gcdd = gcd(gcdd, abs(p.second));
+  }
+
+  gcdd *= (all_negative? -1 : 1);
   n.rational /= gcdd; 
   d.rational /= gcdd;
 
@@ -60,3 +65,24 @@ string Frac::pretty_print() {
               + denom.pretty_print() + ")";
 }
 
+
+Frac Frac::operator+(const Frac &other) {
+  return {numer * other.denom + denom * other.numer,
+          denom * other.denom};
+}
+
+
+Frac Frac::operator-(const Frac &other) {
+  return {numer * other.denom - denom * other.numer,
+          denom * other.denom};
+}
+
+
+Frac Frac::operator*(const Frac &other) {
+  return {numer * other.numer, denom * other.denom};
+}
+
+
+Frac Frac::operator/(const Frac &other) {
+  return {numer * other.denom, denom * other.numer};
+}
