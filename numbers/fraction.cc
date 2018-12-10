@@ -84,5 +84,12 @@ Frac Frac::operator*(const Frac &other) {
 
 
 Frac Frac::operator/(const Frac &other) {
-  return {numer * other.denom, denom * other.numer};
+  try {
+    return {numer * other.denom, denom * other.numer};
+  }
+  catch (domain_error &r) {
+    cerr << r.what() << endl;
+    throw;
+  }
+  return {{1, {}}, {1, {}}};
 }
