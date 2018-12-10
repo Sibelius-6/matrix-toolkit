@@ -10,6 +10,12 @@ public:
   Sqrt numer, denom;
   Frac(Sqrt n, Sqrt d);
   std::string pretty_print();
+/*
+  Frac operator+(const Frac &other);
+  Frac operator-(const Frac &other);
+  Frac operator*(const Frac &other);
+  Frac operator/(const Frac &other);
+*/
 };
 
 #endif
