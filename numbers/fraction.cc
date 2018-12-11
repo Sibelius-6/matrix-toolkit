@@ -78,7 +78,7 @@ Frac Frac::operator-(const Frac &other) {
 }
 
 
-Frac Frac::operator*(const Frac &other) {
+Frac Frac::operator*(const Frac &other) const {
   return {numer * other.numer, denom * other.denom};
 }
 

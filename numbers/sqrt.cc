@@ -105,7 +105,7 @@ Sqrt Sqrt::operator-(const Sqrt &other) {
   return { rational - other.rational, res_i };
 }
 
-Sqrt Sqrt::operator*(const Sqrt &other) {
+Sqrt Sqrt::operator*(const Sqrt &other) const {
   int res_r = rational * other.rational;
   map<radicand, multiple> res_i {};
   for (const auto &p : other.irrational) {

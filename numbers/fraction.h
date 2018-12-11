@@ -15,7 +15,7 @@ public:
 
   Frac operator+(const Frac &other);
   Frac operator-(const Frac &other);
-  Frac operator*(const Frac &other);
+  Frac operator*(const Frac &other) const;
   Frac operator/(const Frac &other);
 };
 

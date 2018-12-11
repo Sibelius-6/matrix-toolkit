@@ -24,7 +24,7 @@ public:
 
   Sqrt operator+(const Sqrt &other);
   Sqrt operator-(const Sqrt &other);
-  Sqrt operator*(const Sqrt &other);
+  Sqrt operator*(const Sqrt &other) const;
   Frac operator/(const Sqrt &other);
 };
 
