@@ -52,7 +52,7 @@ static void simplify(Sqrt &n, Sqrt &d) {
 }
 
 
-Frac::Frac(Sqrt n, Sqrt d) : numer{n}, denom{d} {
+Frac::Frac(Sqrt n, Sqrt d) : numer{move(n)}, denom{move(d)} {
   if (d.rational == 0 && d.irrational.size() == 0)
     throw domain_error("denominator can't be zero");
   rationalize(numer, denom);

@@ -9,6 +9,8 @@ class Frac {
 public:
   Sqrt numer, denom;
   Frac(Sqrt n, Sqrt d);
+  
+
   std::string pretty_print();
 
   Frac operator+(const Frac &other);

@@ -18,7 +18,7 @@ int main() {
   cout << "d=a*b is " << d.pretty_print() << endl;
   Frac e = a / b;
   cout << "e=a/b is " << e.pretty_print() << endl;
-  Frac f = {{0, {{}}}, {2, {{}}}};
+  Frac f = {{1, {{}}}, {2, {{}}}};
   cout << "f is " << f.pretty_print() << endl;
 
   cout << endl << "Now fractions operation..." << endl << endl;

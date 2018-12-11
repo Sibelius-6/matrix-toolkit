@@ -17,6 +17,7 @@ public:
 
   Sqrt(int rational_, std::map<radicand, multiple> irrational_);
   Sqrt(const Sqrt &other);
+  Sqrt(const Sqrt &&other);
   Sqrt &operator=(Sqrt other);
 
   std::string pretty_print();

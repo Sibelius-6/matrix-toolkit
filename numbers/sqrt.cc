@@ -57,9 +57,13 @@ Sqrt::Sqrt(int rational_, map<radicand, multiple> irrational_):
       standardize(rational, irrational);
 }
 
-Sqrt::Sqrt(const Sqrt &other) {
-  rational = other.rational;
-  irrational = other.irrational;
+Sqrt::Sqrt(const Sqrt &other):
+  rational{other.rational}, irrational{other.irrational} {
+  standardize(rational, irrational);
+}
+
+Sqrt::Sqrt(const Sqrt &&other):
+  rational{move(other.rational)}, irrational{move(other.irrational)} {
   standardize(rational, irrational);
 }
 
