@@ -32,6 +32,9 @@ Complex Complex::conjugate() const {
 
 Complex Complex::sqr_norm() const { return (*this) * conjugate(); }
 
+Complex power(const Complex c, int n);
+  
+
 Complex Complex::operator+(const Complex &other) {
   return {real + other.real, im + other.im};
 }
