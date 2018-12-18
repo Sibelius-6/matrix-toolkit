@@ -25,6 +25,7 @@ public:
 };
 
 Complex pow(const Complex &c, size_t n);
+Complex pow_(const Complex &c, size_t n);
 Complex sqrt(const Complex &c);
 #endif
 
