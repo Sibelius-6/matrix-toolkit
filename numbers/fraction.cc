@@ -37,10 +37,10 @@ static void simplify(Sqrt &n, Sqrt &d) {
   }
   int gcdd = gcd(abs(n.rational), abs(d.rational));
 
-  bool all_negative = n.rational < 0 && d.rational < 0;
+  bool all_negative = n.rational <= 0 && d.rational <= 0;
 
   for (auto p : n.irrational) {
-    if (all_negative) all_negative = p.second < 0; 
+    if (all_negative) { all_negative = p.second <= 0; /* cout << "fuck" << endl;*/ }
     gcdd = gcd(gcdd, abs(p.second));
   }
 
