@@ -21,8 +21,11 @@ int main() {
   cout << "e: " << e.pretty_print() << " f: " 
                 << f.pretty_print() << endl << endl;
   
-  cout << "e+f is " << (e+f).pretty_print() << endl;
-  cout << "e-f is " << (e-f).pretty_print() << endl;
-  cout << "e*f is " << (e*f).pretty_print() << endl;
-  cout << "e/f is " << (e/f).pretty_print() << endl;
+//  cout << "e+f is " << (e+f).pretty_print() << endl;
+//  cout << "e-f is " << (e-f).pretty_print() << endl;
+//  cout << "e*f is " << (e*f).pretty_print() << endl;
+  cout << "e^0 is " << (power(e, 0)).pretty_print() << endl;
+  cout << "e^1 is " << (power(e, 1)).pretty_print() << endl;
+  cout << "e^2 is " << (power(e, 2)).pretty_print() << endl;
+  cout << "e^3 is " << (power(e, 3)).pretty_print() << endl;
 }

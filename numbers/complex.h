@@ -14,7 +14,6 @@ public:
 
   Complex conjugate() const;
   Complex sqr_norm() const;  
-  Complex power() const;
 
   Complex operator+(const Complex &other);
   Complex operator-(const Complex &other);
@@ -22,6 +21,8 @@ public:
   Complex operator/(const Complex &other);
   
 };
+
+Complex power(const Complex &c, size_t n);
 
 #endif
 

@@ -32,7 +32,6 @@ Complex Complex::conjugate() const {
 
 Complex Complex::sqr_norm() const { return (*this) * conjugate(); }
 
-Complex power(const Complex c, int n);
   
 
 Complex Complex::operator+(const Complex &other) {
@@ -52,4 +51,13 @@ Complex Complex::operator/(const Complex &other) {
   Frac denom = other.sqr_norm().real;
   Complex tmp = (*this) * other.conjugate();
   return {tmp.real / denom, tmp.im / denom};
+}
+
+Complex power(const Complex &c, size_t n) {
+  if (n == 0) return {{{1, {{}}}, {1, {{}}}}, {{0, {{}}}, {1, {{}}}}};
+  
+  Complex temp = power(c, n / 2);
+
+  if ((n % 2) == 0) return temp * temp;
+  else return c * temp * temp; 
 }
