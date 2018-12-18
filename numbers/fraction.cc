@@ -93,3 +93,11 @@ Frac Frac::operator/(const Frac &other) {
   }
   return {{1, {}}, {1, {}}};
 }
+
+bool Frac::operator==(const Frac &other) const {
+  return numer == other.numer && denom == other.denom;
+}
+
+bool Frac::operator!=(const Frac &other) const {
+  return !(*this == other);
+}

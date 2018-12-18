@@ -26,6 +26,9 @@ public:
   Sqrt operator-(const Sqrt &other);
   Sqrt operator*(const Sqrt &other) const;
   Frac operator/(const Sqrt &other);
+
+  bool operator==(const Sqrt &other) const;
+  bool operator!=(const Sqrt &other) const;
 };
 
 #endif

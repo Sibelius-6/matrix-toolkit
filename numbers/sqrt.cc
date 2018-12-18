@@ -130,6 +130,13 @@ Frac Sqrt::operator/(const Sqrt &other) {
     cerr << r.what() << endl;
     throw;
   }
-  return {{1, {}}, {1, {}}};
+  return {{1, {}}, {1, {}}}; // should never be reached
 }
 
+bool Sqrt::operator==(const Sqrt &other) const {
+  return rational == other.rational && irrational == other.irrational;
+}
+
+bool Sqrt::operator!=(const Sqrt &other) const {
+  return !(*this == other);
+}

@@ -17,6 +17,9 @@ public:
   Frac operator-(const Frac &other);
   Frac operator*(const Frac &other) const;
   Frac operator/(const Frac &other);
+
+  bool operator==(const Frac &other) const;
+  bool operator!=(const Frac &other) const;
 };
 
 #endif

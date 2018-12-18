@@ -20,9 +20,11 @@ public:
   Complex operator*(const Complex &other) const;
   Complex operator/(const Complex &other);
   
+  bool operator==(const Complex &other) const;  
+  bool operator!=(const Complex &other) const;
 };
 
-Complex power(const Complex &c, size_t n);
-
+Complex pow(const Complex &c, size_t n);
+Complex sqrt(const Complex &c);
 #endif
 

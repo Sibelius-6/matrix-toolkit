@@ -1,4 +1,5 @@
 #include <string>
+#include <stdexcept>
 #include <map>
 #include <iostream>
 #include <utility>
@@ -53,10 +54,23 @@ Complex Complex::operator/(const Complex &other) {
   return {tmp.real / denom, tmp.im / denom};
 }
 
-Complex power(const Complex &c, size_t n) {
-  if (n == 0) return {{{1, {{}}}, {1, {{}}}}, {{0, {{}}}, {1, {{}}}}};
+bool Complex::operator==(const Complex &other) const {
+  return real == other.real && im == other.im;
+}
+
+bool Complex::operator!=(const Complex &other) const {
+  return !(*this == other);
+}
+
+static Complex zero {{{0, {{}}}, {1, {{}}}}, {{0, {{}}}, {1, {{}}}}};
+static Complex one {{{1, {{}}}, {1, {{}}}}, {{0, {{}}}, {1, {{}}}}};
+
+Complex pow(const Complex &c, size_t n) {
+  if (c == zero && n == 0) 
+	throw domain_error("can't have 0^0");
+  if (n == 0) return one;
   
-  Complex temp = power(c, n / 2);
+  Complex temp = pow(c, n / 2);
 
   if ((n % 2) == 0) return temp * temp;
   else return c * temp * temp; 
