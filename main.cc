@@ -1,23 +1,16 @@
 #include <iostream>
-#include <cmath>
+#include <string>
+#include <stdexcept>
+#include "matrix.h"
 #include "complex.h"
 using namespace std;
 
+
 int main() {
-
-  Complex e {1};
-
-  Complex f {2};
-  Complex g {0};
-  Complex h {-1};
-  Complex i {1000};
-  Complex all[] = {e, f, g, h, i};
-  int ii = 0;
-
-  for (auto cc : all) { 
-    cout << 'e' + ii << ": " << cc.pretty_print() << " which hold place : " << cc.placeHolder() << endl;
-    ++ii;
-  } 
-  
-
+  Matrix m {2, 3};
+  for (int i = 0; i < 2; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      cout << "row: " << i << "col: " << j << m.get_ij(i, j)->pretty_print() << endl;
+    }
+  }
 }
