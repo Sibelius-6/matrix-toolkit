@@ -19,8 +19,19 @@ int main() {
 //  Frac ttt = { {0, {{6, -2}}}, {-4 , {}} };
  //  cout << endl << "Now complex operation..." << endl << endl;
 
-  Complex e {one, zero};
-//  Complex f {oone, ttwo};
+  Complex e {1};
+
+  Complex f {2};
+  Complex g {0};
+  Complex h {-1};
+  Complex i {1000};
+  Complex all[] = {e, f, g, h, i};
+  int ii = 0;
+
+  for (auto cc : all) { 
+    cout << 'e' + ii << ": " << cc.pretty_print() << " which hold place : " << cc.placeHolder() << endl;
+    ++ii;
+  } 
   
 
 //  Complex zzero {zero, zero}; 
@@ -31,7 +42,7 @@ int main() {
 //  cout << "e+f is " << (e+f).pretty_print() << endl;
 //  cout << "e-f is " << (e-f).pretty_print() << endl;
 //  cout << "e*f is " << (e*f).pretty_print() << endl;
-  cout << "sqrt e is " << (sqrt(e)).pretty_print() << endl;
+//  cout << "sqrt e is " << (sqrt(e)).pretty_print() << endl;
 //  cout << "e^1 is " << (pow(e, 1)).pretty_print() << endl;
 //  cout << "e^2 is " << (pow(e, 2)).pretty_print() << endl;
 //  cout << "e^3 is " << (pow(e, 3)).pretty_print() << endl;

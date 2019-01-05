@@ -11,6 +11,10 @@ using namespace std;
 
 Complex::Complex(Frac r, Frac i): real{move(r)}, im{move(i)} {}
 
+// This creates the integers
+Complex::Complex(int n): real{ (Frac){{n, {}}, {1, {}}} }, im{ (Frac){{0, {}}, {1, {}}} } {}
+
+int Complex::placeHolder() { return pretty_print().length(); }
 
 string Complex::pretty_print() {
   string im_tmp = im.pretty_print();
