@@ -9,8 +9,10 @@ public:
   Frac real, im;
 
   Complex(Frac r, Frac i);
+  Complex(int n);
 
   std::string pretty_print();
+  int placeHolder();
 
   Complex conjugate() const;
   Complex sqr_norm() const;  
