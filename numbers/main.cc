@@ -22,7 +22,7 @@ int main() {
   Complex e {1};
 
   Complex f {2};
-  Complex g {0};
+  Complex g;
   Complex h {-1};
   Complex i {1000};
   Complex all[] = {e, f, g, h, i};

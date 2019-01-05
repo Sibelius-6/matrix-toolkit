@@ -9,7 +9,7 @@ public:
   Frac real, im;
 
   Complex(Frac r, Frac i);
-  Complex(int n);
+  Complex(int n=0);
 
   std::string pretty_print();
   int placeHolder();
