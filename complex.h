@@ -1,7 +1,7 @@
 #ifndef _COMPLEX_H_
 #define _COMPLEX_H_
 
-#include "./numbers/fraction.h"
+#include "fraction.h"
 #include <string>
 
 class Complex {

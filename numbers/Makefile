@@ -1,11 +1,11 @@
 CXX = g++-5
 CXXFLAGS = -std=c++14 -Wall -MMD
-#EXEC = main
-OBJECTS = sqrt.o fraction.o complex.o
+EXEC = main
+OBJECTS = main.o sqrt.o fraction.o complex.o
 DEPENDS = ${OBJECTS:.o=.d}
 
-#${EXEC}: ${OBJECTS}
-#	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+${EXEC}: ${OBJECTS}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
 
 -include ${DEPENDS}
 
