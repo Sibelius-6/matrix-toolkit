@@ -12,7 +12,7 @@ class Matrix {
 public:
   Matrix(int row, int col);
 
-  void set_ij(int i, int j);
+  void set_ij(int i, int j, int value);
   std::unique_ptr<Complex> get_ij(int i, int j);
     
   int getR() const { return row; }
