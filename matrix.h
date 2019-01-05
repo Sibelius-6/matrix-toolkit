@@ -10,11 +10,8 @@ class Matrix {
   std::vector<std::vector<unique_ptr<Complex>>> data;
 
 public:
-  void setR(int r) { row = r; }
-  void setC(int c) { col = c; }
-
-  void setData(std::vector<std::vector<int>>);
-
+  Matrix(int row, int col);
+    
   int getR() const { return row; }
   int getC() const { return col; }
   
