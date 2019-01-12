@@ -3,17 +3,17 @@
 
 #include <vector>
 #include <memory>
-class Complex;
+#include "complex.h"
 
 class Matrix {
   int row, col; // this should be consistent with the data
-  std::vector<std::vector<std::unique_ptr<Complex>>> data;
+  std::vector<std::vector<Complex *>> data;
 
 public:
   Matrix(int row, int col);
 
   void set_ij(int i, int j, int value);
-  std::unique_ptr<Complex> get_ij(int i, int j);
+  Complex get_ij(int i, int j);
     
   int getR() const { return row; }
   int getC() const { return col; }
