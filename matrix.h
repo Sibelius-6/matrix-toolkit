@@ -2,7 +2,6 @@
 #define _MATRIX_H_
 
 #include <vector>
-#include <memory>
 #include "complex.h"
 
 class Matrix {
@@ -11,6 +10,7 @@ class Matrix {
 
 public:
   Matrix(int row, int col);
+//  ~Matrix();
 
   void set_ij(int i, int j, int value);
   Complex get_ij(int i, int j);
