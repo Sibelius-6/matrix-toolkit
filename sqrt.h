@@ -11,24 +11,31 @@ typedef int multiple;
 
 class Sqrt {
 public:
-  int rational;
-  std::map<radicand, multiple> irrational;
-  // = rational + multiple * √radicand
+    int rational;
+    std::map <radicand, multiple> irrational;
+    // = rational + multiple * √radicand
 
-  Sqrt(int rational_, std::map<radicand, multiple> irrational_);
-  Sqrt(const Sqrt &other);
-  Sqrt(const Sqrt &&other);
-  Sqrt &operator=(Sqrt other);
+    Sqrt(int rational_, std::map <radicand, multiple> irrational_);
 
-  std::string pretty_print();
+    Sqrt(const Sqrt &other);
 
-  Sqrt operator+(const Sqrt &other);
-  Sqrt operator-(const Sqrt &other);
-  Sqrt operator*(const Sqrt &other) const;
-  Frac operator/(const Sqrt &other);
+    Sqrt(const Sqrt &&other);
 
-  bool operator==(const Sqrt &other) const;
-  bool operator!=(const Sqrt &other) const;
+    Sqrt &operator=(Sqrt other);
+
+    std::string pretty_print();
+
+    Sqrt operator+(const Sqrt &other);
+
+    Sqrt operator-(const Sqrt &other);
+
+    Sqrt operator*(const Sqrt &other) const;
+
+    Frac operator/(const Sqrt &other);
+
+    bool operator==(const Sqrt &other) const;
+
+    bool operator!=(const Sqrt &other) const;
 };
 
 #endif

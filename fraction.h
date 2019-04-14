@@ -7,19 +7,24 @@
 
 class Frac {
 public:
-  Sqrt numer, denom;
-  Frac(Sqrt n, Sqrt d);
-  
+    Sqrt numer, denom;
 
-  std::string pretty_print();
+    Frac(Sqrt n, Sqrt d);
 
-  Frac operator+(const Frac &other);
-  Frac operator-(const Frac &other);
-  Frac operator*(const Frac &other) const;
-  Frac operator/(const Frac &other);
 
-  bool operator==(const Frac &other) const;
-  bool operator!=(const Frac &other) const;
+    std::string pretty_print();
+
+    Frac operator+(const Frac &other);
+
+    Frac operator-(const Frac &other);
+
+    Frac operator*(const Frac &other) const;
+
+    Frac operator/(const Frac &other);
+
+    bool operator==(const Frac &other) const;
+
+    bool operator!=(const Frac &other) const;
 };
 
 #endif
