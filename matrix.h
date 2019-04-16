@@ -6,7 +6,7 @@
 
 class Matrix {
     int row, col; // this should be consistent with the data
-    std::vector <std::vector<Complex *>> data;
+    std::vector <std::vector<Complex>> data;
 
 public:
     Matrix(int row, int col);
