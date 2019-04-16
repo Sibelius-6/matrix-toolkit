@@ -59,7 +59,7 @@ Frac::Frac(Sqrt n, Sqrt d) : numer{move(n)}, denom{move(d)} {
     simplify(numer, denom);
 }
 
-string Frac::pretty_print() {
+string Frac::pretty_print() const {
     if (denom.rational == 1) return numer.pretty_print();
     return "(" + numer.pretty_print() + "/"
            + denom.pretty_print() + ")";

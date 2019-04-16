@@ -22,13 +22,23 @@ Matrix::Matrix(int row, int col) : row{row}, col{col} {
 }*/
 
 // requires: 0 <= i <= row-1	0 <= j <= col-1
-void Matrix::set_ij(int i, int j, int value) {
+void Matrix::set_ij(int i, int j, const Complex &value) {
     assert(0 <= i && i <= row - 1 && 0 <= j && j <= col - 1 && "i,j is out_of_range");
-    data[i][j] = Complex{value};
+    data[i][j] = value;
 }
 
-Complex Matrix::get_ij(int i, int j) {
+const Complex &Matrix::get_ij(int i, int j) const {
     assert(0 <= i && i <= row - 1 && 0 <= j && j <= col - 1 && "i,j is out_of_range");
     return data[i][j];
 }
 
+Matrix Matrix::operator+(const Matrix &other) {
+    // add exception later on for checking whether two matrices have same dimension
+    Matrix res {row, col};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            res.set_ij(i, j, data[i][j] + other.get_ij(i, j));
+        }
+    }
+    return res;
+}

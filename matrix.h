@@ -12,13 +12,19 @@ public:
     Matrix(int row, int col);
 //  ~Matrix();
 
-    void set_ij(int i, int j, int value);
+    void set_ij(int i, int j, const Complex &value);
 
-    Complex get_ij(int i, int j);
+    const Complex &get_ij(int i, int j) const;
 
     int getR() const { return row; }
 
     int getC() const { return col; }
+
+    Matrix operator+(const Matrix &other);
+
+    Matrix operator-(const Matrix &other);
+
+    Matrix operator*(const Matrix &other) const;
 
 
 };

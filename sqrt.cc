@@ -74,7 +74,7 @@ Sqrt &Sqrt::operator=(Sqrt other) {
     return *this;
 }
 
-string Sqrt::pretty_print() {
+string Sqrt::pretty_print() const {
     if (rational == 0 && irrational.size() == 0) return "(0)";
     string rat = (rational ? to_string(rational) : "");
     string irr = "";

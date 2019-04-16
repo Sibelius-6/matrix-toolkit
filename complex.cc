@@ -18,7 +18,7 @@ Complex::Complex(int n) : real{(Frac) {{n, {}},
 
 int Complex::placeHolder() { return pretty_print().length(); }
 
-string Complex::pretty_print() {
+string Complex::pretty_print() const {
     string im_tmp = im.pretty_print();
     string real_tmp = real.pretty_print();
     if (im_tmp == "(0)") {

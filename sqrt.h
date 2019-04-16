@@ -23,7 +23,7 @@ public:
 
     Sqrt &operator=(Sqrt other);
 
-    std::string pretty_print();
+    std::string pretty_print() const;
 
     Sqrt operator+(const Sqrt &other);
 

@@ -12,7 +12,7 @@ public:
     Frac(Sqrt n, Sqrt d);
 
 
-    std::string pretty_print();
+    std::string pretty_print() const;
 
     Frac operator+(const Frac &other);
 

@@ -12,7 +12,7 @@ public:
 
     Complex(int n = 0);
 
-    std::string pretty_print();
+    std::string pretty_print() const;
 
     int placeHolder();
 
