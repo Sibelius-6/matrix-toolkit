@@ -71,7 +71,7 @@ void Matrix::display() const {
     }
 
     string empty_line = "[";
-    for (auto ph : place_holders) empty_line += " " + string(ph, "\s") + " ";
+    for (auto ph : place_holders) empty_line += " " + string(ph, ' ') + " ";
     empty_line += "]";
 
     for (int i = 0; i < row; ++i) {

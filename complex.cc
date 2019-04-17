@@ -37,7 +37,7 @@ string Complex::reformat(int n) const {
     int spaces = placeHolder() - n;
     int left_space = spaces / 2;
     int right_space = spaces - left_space;
-    return string(left_space, " ") + pretty_print() + string(right_space, " ");
+    return string(left_space, ' ') + pretty_print() + string(right_space, ' ');
 }
 
 Complex Complex::conjugate() const {
