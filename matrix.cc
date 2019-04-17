@@ -3,7 +3,8 @@
 #include "complex.h"
 #include "matrix.h"
 #include <cassert>
-
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
 // By default, all the entries are filled with 0
@@ -41,4 +42,43 @@ Matrix Matrix::operator+(const Matrix &other) {
         }
     }
     return res;
+}
+
+Matrix Matrix::operator-(const Matrix &other) {
+    Matrix res {row, col};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            res.set_ij(i, j, data[i][j] - other.get_ij(i, j));
+        }
+    }
+    return res;
+}
+
+Matrix Matrix::operator*(const Matrix &other) const {
+    // later
+}
+
+void Matrix::display() const {
+    if (row == 0) {
+        cout << "[ empty ]" << endl;
+        return;
+    }
+    vector <int> place_holders(col, 0);
+    for (auto r: data) {
+        for (int c = 0; c < col; ++c) {
+            place_holders[c] = max(place_holders[c], r.at(c).placeHolder());
+        }
+    }
+
+    string empty_line = "[";
+    for (auto ph : place_holders) empty_line += " " + string(ph, "\s") + " ";
+    empty_line += "]";
+
+    for (int i = 0; i < row; ++i) {
+        if (i != 0) cout << empty_line << endl;
+        auto this_row = data[i];
+        cout << "[";
+        for (int j = 0; j < col; ++j) cout << " " << this_row[j].reformat(place_holders[j]) << " ";
+        cout << "]" << endl;
+    }
 }

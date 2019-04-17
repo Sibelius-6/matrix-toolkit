@@ -26,6 +26,7 @@ public:
 
     Matrix operator*(const Matrix &other) const;
 
+    void display() const;
 
 };
 

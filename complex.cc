@@ -16,7 +16,7 @@ Complex::Complex(int n) : real{(Frac) {{n, {}},
                                        {1, {}}}}, im{(Frac) {{0, {}},
                                                              {1, {}}}} {}
 
-int Complex::placeHolder() { return pretty_print().length(); }
+int Complex::placeHolder() const { return pretty_print().length(); }
 
 string Complex::pretty_print() const {
     string im_tmp = im.pretty_print();
@@ -30,6 +30,14 @@ string Complex::pretty_print() const {
     else if (im_tmp == "(1)") return real_tmp + "+i";
     else if (im_tmp == "(-1)") return real_tmp + "-i";
     return real_tmp + "+" + im_tmp + "i";
+}
+
+string Complex::reformat(int n) const {
+    if (n < placeHolder()) return "ERROR";
+    int spaces = placeHolder() - n;
+    int left_space = spaces / 2;
+    int right_space = spaces - left_space;
+    return string(left_space, " ") + pretty_print() + string(right_space, " ");
 }
 
 Complex Complex::conjugate() const {

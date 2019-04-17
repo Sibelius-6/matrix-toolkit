@@ -14,7 +14,9 @@ public:
 
     std::string pretty_print() const;
 
-    int placeHolder();
+    std::string reformat(int n) const;
+
+    int placeHolder() const;
 
     Complex conjugate() const;
 
