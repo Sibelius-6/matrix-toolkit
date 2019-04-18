@@ -10,7 +10,6 @@ using namespace std;
 int main() {
     Complex one {1};
     Complex two {2};
-    Complex zero {0};
     Matrix m {2, 3};
     Matrix m2 {2, 3};
     for (int i = 0; i < 2; ++i) {
@@ -26,7 +25,8 @@ int main() {
     Matrix res = m + m2;
     Complex half = one / two;
     res = res * half;
-    res.set_ij(1, 0, one);
+    res.set_ij(0, 1, one);
+    res.set_ij(1, 2, two);
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 3; ++j) {
             cout << "row: " << i << "col: " << j << "value : " << res.get_ij(i, j).pretty_print() << endl;

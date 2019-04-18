@@ -34,7 +34,7 @@ string Complex::pretty_print() const {
 
 string Complex::reformat(int n) const {
     if (n < placeHolder()) return "ERROR";
-    int spaces = placeHolder() - n;
+    int spaces = n - placeHolder();
     int left_space = spaces / 2;
     int right_space = spaces - left_space;
     return string(left_space, ' ') + pretty_print() + string(right_space, ' ');
