@@ -56,6 +56,18 @@ Matrix Matrix::operator-(const Matrix &other) {
 
 Matrix Matrix::operator*(const Matrix &other) const {
     // later
+    Matrix res {row, col};
+    return res;
+}
+
+Matrix Matrix::operator*(const Complex &scalar) const {
+    Matrix res {row, col};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            res.set_ij(i, j, get_ij(i, j) * scalar);
+        }
+    }
+    return res;
 }
 
 void Matrix::display() const {

@@ -26,6 +26,8 @@ public:
 
     Matrix operator*(const Matrix &other) const;
 
+    Matrix operator*(const Complex &scalar) const;
+
     void display() const;
 
 };
