@@ -5,6 +5,7 @@
 #include <cassert>
 #include <iostream>
 #include <algorithm>
+#include <stdexcept>
 using namespace std;
 
 // By default, all the entries are filled with 0
@@ -55,8 +56,17 @@ Matrix Matrix::operator-(const Matrix &other) {
 }
 
 Matrix Matrix::operator*(const Matrix &other) const {
-    // later
-    Matrix res {row, col};
+    if (col != other.getR()) throw logic_error("Can't do matrix multiplication");
+    Matrix res {row, other.getC()};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < other.getC(); ++j) {
+            Complex sum {0};
+            for (int k = 0; k < col; ++k) {
+                sum = sum + get_ij(i, k) * other.get_ij(k, j);
+            }
+            res.set_ij(i, j, sum);
+        }
+    }
     return res;
 }
 
