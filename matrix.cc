@@ -80,6 +80,21 @@ Matrix Matrix::operator*(const Complex &scalar) const {
     return res;
 }
 
+bool Matrix::operator==(const Matrix &other) const {
+    if (row != other.getR()) return false;
+    if (col != other.getC()) return false;
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (get_ij(i, j) != other.get_ij(i, j)) return false;
+        }
+    }
+    return true;
+}
+
+bool Matrix::operator!=(const Matrix &other) const {
+    return !(*this == other);
+}
+
 void Matrix::display() const {
     if (row == 0) {
         cout << "[ empty ]" << endl;
@@ -103,4 +118,58 @@ void Matrix::display() const {
         for (int j = 0; j < col; ++j) cout << " " << this_row[j].reformat(place_holders[j]) << " ";
         cout << "]" << endl;
     }
+}
+
+Complex Matrix::determinant() const {
+    return Complex {1};
+}
+
+size_t Matrix::rank() const {
+    return 1;
+}
+
+Complex Matrix::trace() const {
+    if (!square()) throw logic_error("Can't calculate trace for rectangular matrix");
+    Complex res {0};
+    for (int i = 0; i < row; ++i) res = res + get_ij(i, i);
+    return res;
+}
+
+// for full definition, please search for wikipedia on nilpotent matrix
+size_t Matrix::index() const {
+    if (!nilpotent()) throw logic_error("Matrix is not nilpotent");
+    if (!square()) throw logic_error("Matrix is not square");
+
+    Matrix zero = zero_matrix(row, col);
+    Matrix res = *this;
+    size_t k = 1;
+    while (res != zero) {
+        res = res * (*this);
+        ++k;
+    }
+    return k;
+}
+
+bool Matrix::square() const {
+    return col == row;
+}
+
+bool Matrix::nilpotent() const {
+    // using all eigenvalues = 0 to get this result
+    return true;
+}
+
+Matrix Matrix::identity_matrix(size_t n) {
+    Matrix res {n, n};
+    for (int i = 0; i < n; ++i) res.set_ij(i, i, 1);
+    return res;
+}
+
+
+Matrix Matrix::zero_matrix(size_t r, size_t c) {
+    return Matrix {r, c};
+}
+
+Matrix operator*(const Complex &scalar, const Matrix &m) {
+    return m * scalar;
 }

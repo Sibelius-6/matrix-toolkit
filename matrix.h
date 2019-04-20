@@ -28,9 +28,75 @@ public:
 
     Matrix operator*(const Complex &scalar) const;
 
+    bool operator==(const Matrix &other) const;
+
+    bool operator!=(const Matrix &other) const;
+
     void display() const;
 
+    // methods below are invariants of matrix
+    Complex determinant() const;
+
+    size_t rank() const;
+
+    Complex trace() const;
+
+    size_t index() const; // nilpotent matrix
+
+    size_t geometric_multiplicity() const;
+
+    size_t algebraic_multiplicity() const;
+
+    Complex *singular_values() const;
+
+    Complex *eigenvalues() const;
+
+    // methods below will return a matrix or a vector
+    Matrix RREF() const;
+
+    Matrix inverse() const;
+
+    Matrix left_inverse() const;
+
+    Matrix right_inverse() const;
+
+    Matrix adjoint() const;
+
+    Matrix transpose() const;
+
+    Matrix kernal() const;
+
+    Matrix diagonalize() const;
+
+    Matrix orthogonal_diagonalize() const;
+
+    // methods below are to determine whether this matrix meets or not
+    bool square() const;
+
+    bool symmetric() const;
+
+    bool diagonal() const;
+
+    bool diagonalizable() const;
+
+    bool triangular() const; // either upper or lower
+
+    bool orthogonal() const;
+
+    bool nilpotent() const;
+
+
+    // decomposition
+
+
+    // methods below are static, it can return a specific type of matrix
+    static Matrix identity_matrix(size_t n);
+
+    static Matrix zero_matrix(size_t r, size_t c);
+
 };
+
+Matrix operator*(const Complex &scalar, const Matrix &m);
 
 
 #endif
