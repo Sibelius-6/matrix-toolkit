@@ -18,6 +18,5 @@ int main() {
             m.set_ij(i, j, mmm);
         }
     }
-    m.display();
-    cout << "index of m is " << m.index() << endl;
+    cout << "Matrix M is \n" << m << "index of m is " << m.index() << endl;
 }

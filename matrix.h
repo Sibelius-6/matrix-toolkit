@@ -51,6 +51,8 @@ public:
 
     Complex *eigenvalues() const;
 
+    Complex spectral_radius() const;
+
     // methods below will return a matrix or a vector
     Matrix RREF() const;
 
@@ -85,6 +87,9 @@ public:
 
     bool nilpotent() const;
 
+    bool Hermitian() const;
+
+    bool normal() const;
 
     // decomposition
 
@@ -92,11 +97,16 @@ public:
     // methods below are static, it can return a specific type of matrix
     static Matrix identity_matrix(size_t n);
 
-    static Matrix zero_matrix(size_t r, size_t c);
+    static Matrix zero_matrix(size_t r, size_t c);\
 
+
+
+    friend std::ostream &operator<<(std::ostream &out, const Matrix &m);
 };
 
 Matrix operator*(const Complex &scalar, const Matrix &m);
+
+
 
 
 #endif

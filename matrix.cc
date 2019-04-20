@@ -150,6 +150,12 @@ size_t Matrix::index() const {
     return k;
 }
 
+Complex* Matrix::eigenvalues() const {
+    if (!square()) throw logic_error("Can't calculate eigenvalues for non-square matrix");
+    Complex res [1] = {Complex {1}};
+    return res;
+}
+
 bool Matrix::square() const {
     return col == row;
 }
@@ -170,6 +176,36 @@ Matrix Matrix::zero_matrix(size_t r, size_t c) {
     return Matrix {r, c};
 }
 
+
 Matrix operator*(const Complex &scalar, const Matrix &m) {
     return m * scalar;
+}
+
+ostream &operator<<(ostream &out, const Matrix &m) {
+    int row = m.row;
+    int col = m.col;
+    auto data = m.data;
+    if (row == 0) {
+        out << "[ empty ]" << endl;
+        return out;
+    }
+    vector <int> place_holders(col, 0);
+    for (auto r: data) {
+        for (int c = 0; c < col; ++c) {
+            place_holders[c] = max(place_holders[c], r.at(c).placeHolder());
+        }
+    }
+
+    string empty_line = "[";
+    for (auto ph : place_holders) empty_line += " " + string(ph, ' ') + " ";
+    empty_line += "]";
+
+    for (int i = 0; i < row; ++i) {
+        if (i != 0) out << empty_line << endl;
+        auto this_row = data[i];
+        out << "[";
+        for (int j = 0; j < col; ++j) out << " " << this_row[j].reformat(place_holders[j]) << " ";
+        out << "]" << endl;
+    }
+    return out;
 }
