@@ -11,3 +11,6 @@ hg clone https://bitbucket.org/eigen/eigen/
 ` . In order to succuessfuly compile (make), please be at the same directory as the whole source files. 
 
 The documentation and tutorial can be found [here](http://eigen.tuxfamily.org/dox/index.html). 
+
+### RREF
+I have adopted the algorithms from [here](http://rosettacode.org/wiki/Reduced_row_echelon_form#C.2B.2B)
