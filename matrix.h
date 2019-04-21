@@ -8,9 +8,14 @@ class Matrix {
     int row, col; // this should be consistent with the data
     std::vector <std::vector<Complex>> data;
 
+    void swap_rows(int i, int k);
+
+    void divide_row(int i, const Complex &v);
+
+    void add_multiple_row(int i, int k, const Complex &v);
+
 public:
     Matrix(int row, int col);
-//  ~Matrix();
 
     void set_ij(int i, int j, const Complex &value);
 
@@ -54,7 +59,7 @@ public:
     Complex spectral_radius() const;
 
     // methods below will return a matrix or a vector
-    Matrix RREF() const;
+    void RREF();
 
     Matrix inverse() const;
 
