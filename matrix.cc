@@ -27,6 +27,13 @@ void Matrix::add_multiple_row(int i, int k, const Complex &v) {
     for (int c = 0; c < col; ++c) data[i][c] = data[i][c] + v * data[k][c];
 }
 
+bool Matrix::all_zero_row(int i) const {
+    Complex zero {0};
+    for (int j = 0; j < col; ++j) {
+        if (data[i][j] != zero) return false;
+    }
+    return true;
+}
 
 // By default, all the entries are filled with 0
 Matrix::Matrix(int row, int col) : row{row}, col{col} {
@@ -138,7 +145,16 @@ Complex Matrix::determinant() const {
 }
 
 size_t Matrix::rank() const {
-    return 1;
+    Matrix copy = *this;
+    copy.RREF();
+    size_t rank = 0;
+
+    for (int i = 0; i < row; ++i) {
+        if (copy.all_zero_row(i)) return rank;
+        else ++rank;
+    }
+
+    return rank;
 }
 
 Complex Matrix::trace() const {

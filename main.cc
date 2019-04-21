@@ -18,6 +18,7 @@ int main() {
             m.set_ij(i, j, mmm);
         }
     }
+    cout << "rank: " << m.rank() << endl;
     m.display();
     m.RREF();
     cout << "-------" << endl;

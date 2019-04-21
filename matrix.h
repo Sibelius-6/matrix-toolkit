@@ -102,7 +102,10 @@ public:
     // methods below are static, it can return a specific type of matrix
     static Matrix identity_matrix(size_t n);
 
-    static Matrix zero_matrix(size_t r, size_t c);\
+    static Matrix zero_matrix(size_t r, size_t c);
+
+    // public helpers (I'm bit lazy)
+    bool all_zero_row(int i) const;
 
 
 
