@@ -40,6 +40,8 @@ public:
     void display() const;
 
     // methods below are invariants of matrix
+    Complex determinant_helper(int n) const;
+
     Complex determinant() const;
 
     size_t rank() const;
@@ -66,6 +68,8 @@ public:
     Matrix left_inverse() const;
 
     Matrix right_inverse() const;
+
+    Matrix cofactor() const;
 
     Matrix adjoint() const;
 
@@ -108,13 +112,10 @@ public:
     bool all_zero_row(int i) const;
 
 
-
     friend std::ostream &operator<<(std::ostream &out, const Matrix &m);
 };
 
 Matrix operator*(const Complex &scalar, const Matrix &m);
-
-
 
 
 #endif

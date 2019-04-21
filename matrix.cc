@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <stdexcept>
 
+
 using namespace std;
 
 
@@ -28,12 +29,14 @@ void Matrix::add_multiple_row(int i, int k, const Complex &v) {
 }
 
 bool Matrix::all_zero_row(int i) const {
-    Complex zero {0};
+    Complex zero{0};
     for (int j = 0; j < col; ++j) {
         if (data[i][j] != zero) return false;
     }
     return true;
 }
+
+
 
 // By default, all the entries are filled with 0
 Matrix::Matrix(int row, int col) : row{row}, col{col} {
@@ -140,9 +143,37 @@ void Matrix::display() const {
     }
 }
 
-Complex Matrix::determinant() const {
-    return Complex{1};
+// source: https://www.tutorialspoint.com/cplusplus-program-to-compute-determinant-of-a-matrix
+Complex Matrix::determinant_helper(int n) const {
+    if (!square()) throw logic_error("Can't determine determinant for non-square matrix");
+    Complex det {0};
+    Matrix submatrix {row, col};
+    if (n == 1) return get_ij(0, 0);
+    if (n == 2) return ((get_ij(0, 0) * get_ij(1, 1)) - (get_ij(1, 0) * get_ij(0, 1)));
+    else {
+        for (int x = 0; x < n; ++x) {
+            int subi = 0;
+            for (int i = 1; i < n; ++i) {
+                int subj = 0;
+                for (int j = 0; j < n; ++j) {
+                    if (j == x) continue;
+                    submatrix.set_ij(subi, subj, get_ij(i, j));
+                    subj++;
+                }
+                subi++;
+            }
+            Complex minus_one {-1};
+            det = det + (pow(minus_one, x) * get_ij(0, x) * submatrix.determinant_helper(n - 1));
+        }
+    }
+    return det;
 }
+
+Complex Matrix::determinant() const {
+    if (!square()) throw logic_error("Can't determine determinant for non-square matrix");
+    return determinant_helper(row);
+}
+
 
 size_t Matrix::rank() const {
     Matrix copy = *this;
@@ -208,6 +239,7 @@ void Matrix::RREF() {
         }
     }
 }
+
 
 bool Matrix::square() const {
     return col == row;
