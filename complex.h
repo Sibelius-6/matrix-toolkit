@@ -41,5 +41,7 @@ Complex pow_(const Complex &c, size_t n);
 
 Complex sqrt(const Complex &c);
 
+std::ostream &operator<<(std::ostream &out, const Complex &c);
+
 #endif
 

@@ -116,3 +116,8 @@ Complex sqrt(const Complex &c) {
                 {{0, {{numer_, 1}}}, {0, {{denom_, 1}}}}};
     }
 }
+
+ostream &operator<<(ostream &out, const Complex &c) {
+    out << c.pretty_print();
+    return out;
+}
