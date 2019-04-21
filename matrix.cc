@@ -14,20 +14,17 @@ using namespace std;
 void Matrix::swap_rows(int i, int k) {
     if (i >= row || i < 0 || k >= row || k < 0) throw logic_error("out of range");
     swap(data[i], data[k]);
-    cout << "swap " << i << " " << k << endl;
 }
 
 void Matrix::divide_row(int i, const Complex &v) {
     if (i >= row || i < 0) throw logic_error("Out of range");
     for (auto &d : data[i]) d = d / v;
-    cout << "divide row " << i << " by " << v.pretty_print() << endl;
 }
 
 // row_i += v * row_k
 void Matrix::add_multiple_row(int i, int k, const Complex &v) {
     if (i >= row || i < 0 || k >= row || k < 0) throw logic_error("out of range");
     for (int c = 0; c < col; ++c) data[i][c] = data[i][c] + v * data[k][c];
-    cout << "add " << v.pretty_print() << " times of row " << k << " to row " << i << endl;
 }
 
 
@@ -188,7 +185,8 @@ void Matrix::RREF() {
             }
         }
         swap_rows(i, r);
-        divide_row(r, data[r][lead]);
+        const Complex lead_num = data[r][lead];
+        divide_row(r, lead_num);
         for (int i = 0; i <= row - 1; ++i) {
             if (i != r) add_multiple_row(i, r, zero - data[i][lead]);
         }
