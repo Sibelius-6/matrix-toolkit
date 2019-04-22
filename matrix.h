@@ -90,7 +90,9 @@ public:
 
     bool diagonalizable() const;
 
-    bool triangular() const; // either upper or lower
+    bool upper_triangular() const;
+
+    bool lower_triangular() const;
 
     bool orthogonal() const;
 

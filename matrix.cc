@@ -280,6 +280,17 @@ bool Matrix::symmetric() const {
     return false;
 }
 
+bool Matrix::diagonal() const {
+    if (!square()) throw logic_error("Can't determine for a non-square matrix");
+    Complex zero {0};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (i != j && get_ij(i, j) != zero) return false;
+        }
+    }
+    return true;
+}
+
 bool Matrix::invertible() const {
     if (!square()) throw logic_error("no point to determine whether non-square matrix is invertible");
     if (rank() == row) return true;
