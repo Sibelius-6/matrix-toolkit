@@ -94,6 +94,8 @@ public:
 
     bool orthogonal() const;
 
+    bool invertible() const;
+
     bool nilpotent() const;
 
     bool Hermitian() const;

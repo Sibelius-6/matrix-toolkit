@@ -241,6 +241,26 @@ void Matrix::RREF() {
     }
 }
 
+Matrix Matrix::inverse() const {
+    if (!invertible()) throw logic_error("matrix is not invertible");
+    Matrix temp {row, col * 2};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            temp.set_ij(i, j, get_ij(i, j));
+        }
+    }
+    Complex one {1};
+    for (int d = 0; d < col; ++d) temp.set_ij(d, col + d, one);
+    temp.RREF();
+    Matrix res {row, col};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            res.set_ij(i, j, temp.get_ij(i, col + j));
+        }
+    }
+    return res;
+}
+
 Matrix Matrix::transpose() const {
     Matrix res {col, row};
     for (int i = 0; i < col; ++i) {
@@ -253,6 +273,17 @@ Matrix Matrix::transpose() const {
 
 bool Matrix::square() const {
     return col == row;
+}
+
+bool Matrix::symmetric() const {
+    if (transpose() == *this) return true;
+    return false;
+}
+
+bool Matrix::invertible() const {
+    if (!square()) throw logic_error("no point to determine whether non-square matrix is invertible");
+    if (rank() == row) return true;
+    return false;
 }
 
 bool Matrix::nilpotent() const {

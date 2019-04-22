@@ -8,9 +8,11 @@ using namespace std;
 
 
 int main() {
-    Matrix m {3, 4};
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 4; ++j) {
+    int size;
+    cin >> size;
+    Matrix m {size, size};
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
             cout << "\033[1;31m> Matrix M: row:" << i << " col:" << j << "\033[0m" << endl;
             int mm;
             cin >> mm;
@@ -19,7 +21,6 @@ int main() {
         }
     }
     m.display();
-    Matrix trans = m.transpose();
-    cout << endl << endl;
-    trans.display();
+    cout << "-------" << endl;
+    cout << m.inverse();
 }
