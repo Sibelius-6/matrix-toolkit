@@ -14,3 +14,6 @@ The documentation and tutorial can be found [here](http://eigen.tuxfamily.org/do
 
 ### RREF
 I have adopted the algorithms from [here](http://rosettacode.org/wiki/Reduced_row_echelon_form#C.2B.2B)
+
+### determinant
+[Algorithms](https://www.tutorialspoint.com/cplusplus-program-to-compute-determinant-of-a-matrix)
