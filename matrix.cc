@@ -148,6 +148,7 @@ Complex Matrix::determinant_helper(int n) const {
     if (!square()) throw logic_error("Can't determine determinant for non-square matrix");
     Complex det {0};
     Matrix submatrix {row, col};
+    if (n == 0) return det;
     if (n == 1) return get_ij(0, 0);
     if (n == 2) return ((get_ij(0, 0) * get_ij(1, 1)) - (get_ij(1, 0) * get_ij(0, 1)));
     else {
@@ -240,6 +241,15 @@ void Matrix::RREF() {
     }
 }
 
+Matrix Matrix::transpose() const {
+    Matrix res {col, row};
+    for (int i = 0; i < col; ++i) {
+        for (int j = 0; j < row; ++j) {
+            res.set_ij(i, j, get_ij(j, i));
+        }
+    }
+    return res;
+}
 
 bool Matrix::square() const {
     return col == row;

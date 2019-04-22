@@ -8,12 +8,9 @@ using namespace std;
 
 
 int main() {
-    cout << ">size" << endl;
-    int size;
-    cin >> size;
-    Matrix m {size, size};
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
+    Matrix m {3, 4};
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 4; ++j) {
             cout << "\033[1;31m> Matrix M: row:" << i << " col:" << j << "\033[0m" << endl;
             int mm;
             cin >> mm;
@@ -22,5 +19,7 @@ int main() {
         }
     }
     m.display();
-    cout << "------- det is " << m.determinant() <<  endl;
+    Matrix trans = m.transpose();
+    cout << endl << endl;
+    trans.display();
 }
