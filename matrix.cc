@@ -37,7 +37,6 @@ bool Matrix::all_zero_row(int i) const {
 }
 
 
-
 // By default, all the entries are filled with 0
 Matrix::Matrix(int row, int col) : row{row}, col{col} {
     vector <Complex> row_of_zeros(col, Complex());
@@ -146,8 +145,8 @@ void Matrix::display() const {
 // source: https://www.tutorialspoint.com/cplusplus-program-to-compute-determinant-of-a-matrix
 Complex Matrix::determinant_helper(int n) const {
     if (!square()) throw logic_error("Can't determine determinant for non-square matrix");
-    Complex det {0};
-    Matrix submatrix {row, col};
+    Complex det{0};
+    Matrix submatrix{row, col};
     if (n == 0) return det;
     if (n == 1) return get_ij(0, 0);
     if (n == 2) return ((get_ij(0, 0) * get_ij(1, 1)) - (get_ij(1, 0) * get_ij(0, 1)));
@@ -163,7 +162,7 @@ Complex Matrix::determinant_helper(int n) const {
                 }
                 subi++;
             }
-            Complex minus_one {-1};
+            Complex minus_one{-1};
             det = det + (pow(minus_one, x) * get_ij(0, x) * submatrix.determinant_helper(n - 1));
         }
     }
@@ -243,16 +242,16 @@ void Matrix::RREF() {
 
 Matrix Matrix::inverse() const {
     if (!invertible()) throw logic_error("matrix is not invertible");
-    Matrix temp {row, col * 2};
+    Matrix temp{row, col * 2};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
             temp.set_ij(i, j, get_ij(i, j));
         }
     }
-    Complex one {1};
+    Complex one{1};
     for (int d = 0; d < col; ++d) temp.set_ij(d, col + d, one);
     temp.RREF();
-    Matrix res {row, col};
+    Matrix res{row, col};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
             res.set_ij(i, j, temp.get_ij(i, col + j));
@@ -280,7 +279,7 @@ Matrix Matrix::left_inverse() const {
 }
 
 Matrix Matrix::transpose() const {
-    Matrix res {col, row};
+    Matrix res{col, row};
     for (int i = 0; i < col; ++i) {
         for (int j = 0; j < row; ++j) {
             res.set_ij(i, j, get_ij(j, i));
@@ -290,7 +289,7 @@ Matrix Matrix::transpose() const {
 }
 
 Matrix Matrix::conjugate() const {
-    Matrix res {row, col};
+    Matrix res{row, col};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
             res.set_ij(i, j, get_ij(i, j).conjugate());
@@ -305,7 +304,7 @@ bool Matrix::symmetric() const {
 
 bool Matrix::diagonal() const {
     if (!square()) throw logic_error("Can't determine for a non-square matrix");
-    Complex zero {0};
+    Complex zero{0};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
             if (i != j && get_ij(i, j) != zero) return false;
@@ -320,18 +319,40 @@ bool Matrix::invertible() const {
     return false;
 }
 
+bool Matrix::Hermitian() const {
+    return square() && (*this == transpose().conjugate());
+}
+
+bool Matrix::unitary() const {
+    return invertible() && (inverse() == transpose().conjugate());
+}
+
+bool Matrix::orthogonal() const {
+    return invertible() && (inverse() == transpose());
+}
+
+bool Matrix::normal() const {
+    return square() && (*this * transpose().conjugate() == transpose().conjugate() * *this);
+}
+
 bool Matrix::nilpotent() const {
     // using all eigenvalues = 0 to get this result
     return true;
 }
 
-bool Matrix::Hermitian() const {
-    return square() && (*this == transpose().conjugate());
+bool Matrix::upper_triangular() const {
+    if (!square()) throw logic_error("We don't discuss triangular properties with non-square");
+    Complex zero {0};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (j < i && get_ij(i, j) != zero) return false;
+        }
+    }
+    return true;
 }
 
-bool Matrix::normal() const {
-    if (!invertible()) return false;
-    return inverse() == transpose();
+bool Matrix::lower_triangular() const {
+    return transpose().upper_triangular();
 }
 
 Matrix Matrix::identity_matrix(size_t n) {

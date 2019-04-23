@@ -77,8 +77,6 @@ public:
 
     Matrix conjugate() const;
 
-    Matrix kernal() const; // a vector
-
     Matrix diagonalize() const;
 
     Matrix orthogonal_diagonalize() const;
@@ -87,6 +85,12 @@ public:
     inline bool square() const { return col == row; }
 
     bool symmetric() const;
+
+    bool normal() const;
+
+    bool Hermitian() const;
+
+    bool unitary() const;
 
     bool diagonal() const;
 
@@ -102,11 +106,7 @@ public:
 
     bool nilpotent() const;
 
-    bool unitary() const;
 
-    bool Hermitian() const;
-
-    bool normal() const;
 
     // decomposition
     // rank_decomposition singular_value_decomposition
