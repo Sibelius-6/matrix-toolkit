@@ -261,6 +261,24 @@ Matrix Matrix::inverse() const {
     return res;
 }
 
+Matrix Matrix::right_inverse() const {
+    try {
+        return transpose() * (*this * transpose()).inverse();
+    }
+    catch (...) {
+        throw logic_error("this matrix doesn't have right inverse");
+    }
+}
+
+Matrix Matrix::left_inverse() const {
+    try {
+        return (transpose() * *this).inverse() * transpose();
+    }
+    catch (...) {
+        throw logic_error("this matrix doesn't have left inverse");
+    }
+}
+
 Matrix Matrix::transpose() const {
     Matrix res {col, row};
     for (int i = 0; i < col; ++i) {

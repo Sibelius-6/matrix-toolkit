@@ -105,7 +105,7 @@ public:
     bool normal() const;
 
     // decomposition
-
+    // rank_decomposition singular_value_decomposition
 
     // methods below are static, it can return a specific type of matrix
     static Matrix identity_matrix(size_t n);
