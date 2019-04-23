@@ -1,5 +1,13 @@
 # matrix-toolkit
 
+## Prerequisites
+If you have taken first (math 136) and second (math 235) linear algebra courses, you should be fine.
+### left & right inverse
+* A right inverse of a non-square matrix A exists, provided A has full row rank.
+* A left inverse of a non-square matrix A exists, provided A has full column rank.
+
+[full rank defn](https://www.cds.caltech.edu/~murray/amwiki/index.php/FAQ:_What_does_it_mean_for_a_non-square_matrix_to_be_full_rank%3F)
+
 ## Other Sources
 
 ### Eigen
