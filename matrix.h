@@ -75,7 +75,9 @@ public:
 
     Matrix transpose() const;
 
-    Matrix kernal() const;
+    Matrix conjugate() const;
+
+    Matrix kernal() const; // a vector
 
     Matrix diagonalize() const;
 
@@ -99,6 +101,8 @@ public:
     bool invertible() const;
 
     bool nilpotent() const;
+
+    bool unitary() const;
 
     bool Hermitian() const;
 

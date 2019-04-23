@@ -289,13 +289,22 @@ Matrix Matrix::transpose() const {
     return res;
 }
 
+Matrix Matrix::conjugate() const {
+    Matrix res {row, col};
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            res.set_ij(i, j, get_ij(i, j).conjugate());
+        }
+    }
+    return res;
+}
+
 bool Matrix::square() const {
     return col == row;
 }
 
 bool Matrix::symmetric() const {
-    if (transpose() == *this) return true;
-    return false;
+    return square() && (transpose() == *this);
 }
 
 bool Matrix::diagonal() const {
@@ -318,6 +327,15 @@ bool Matrix::invertible() const {
 bool Matrix::nilpotent() const {
     // using all eigenvalues = 0 to get this result
     return true;
+}
+
+bool Matrix::Hermitian() const {
+    return square() && (*this == transpose().conjugate());
+}
+
+bool Matrix::normal() const {
+    if (!invertible()) return false;
+    return inverse() == transpose();
 }
 
 Matrix Matrix::identity_matrix(size_t n) {

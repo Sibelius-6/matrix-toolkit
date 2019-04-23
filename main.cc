@@ -18,7 +18,6 @@ int main() {
             m.set_ij(i, j, mmm);
         }
     }
-    m = m.transpose();
     m.display();
     cout << "-------" << endl;
     char cmd;
