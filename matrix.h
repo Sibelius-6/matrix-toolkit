@@ -21,9 +21,9 @@ public:
 
     const Complex &get_ij(int i, int j) const;
 
-    int getR() const { return row; }
+    inline int getR() const { return row; }
 
-    int getC() const { return col; }
+    inline int getC() const { return col; }
 
     Matrix operator+(const Matrix &other);
 
@@ -84,7 +84,7 @@ public:
     Matrix orthogonal_diagonalize() const;
 
     // methods below are to determine whether this matrix meets or not
-    bool square() const;
+    inline bool square() const { return col == row; }
 
     bool symmetric() const;
 

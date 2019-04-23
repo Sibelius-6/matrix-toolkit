@@ -299,10 +299,6 @@ Matrix Matrix::conjugate() const {
     return res;
 }
 
-bool Matrix::square() const {
-    return col == row;
-}
-
 bool Matrix::symmetric() const {
     return square() && (transpose() == *this);
 }
