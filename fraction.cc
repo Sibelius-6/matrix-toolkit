@@ -40,7 +40,7 @@ static void simplify(Sqrt &n, Sqrt &d) {
     bool all_negative = n.rational <= 0 && d.rational <= 0;
 
     for (auto p : n.irrational) {
-        if (all_negative) { all_negative = p.second <= 0; /* cout << "fuck" << endl;*/ }
+        if (all_negative) { all_negative = p.second <= 0; }
         gcdd = gcd(gcdd, abs(p.second));
     }
 
@@ -84,15 +84,7 @@ Frac Frac::operator*(const Frac &other) const {
 
 
 Frac Frac::operator/(const Frac &other) {
-    try {
-        return {numer * other.denom, denom * other.numer};
-    }
-    catch (domain_error &r) {
-        cerr << r.what() << endl;
-        throw;
-    }
-    return {{1, {}},
-            {1, {}}};
+    return {numer * other.denom, denom * other.numer};
 }
 
 bool Frac::operator==(const Frac &other) const {
@@ -101,4 +93,8 @@ bool Frac::operator==(const Frac &other) const {
 
 bool Frac::operator!=(const Frac &other) const {
     return !(*this == other);
+}
+
+double Frac::doublelize() const {
+    return numer.doublelize() / denom.doublelize();
 }

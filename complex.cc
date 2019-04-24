@@ -84,7 +84,7 @@ static Complex one{{{1, {}}, {1, {}}},
 
 
 complex<double> Complex::doublelize() const {
-    return complex<double> {1, 2};
+    return complex<double> {real.doublelize(), im.doublelize()};
 }
 
 Complex pow(const Complex &c, size_t n) {

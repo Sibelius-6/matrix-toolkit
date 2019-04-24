@@ -25,6 +25,8 @@ public:
     bool operator==(const Frac &other) const;
 
     bool operator!=(const Frac &other) const;
+
+    double doublelize() const;
 };
 
 #endif

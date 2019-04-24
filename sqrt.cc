@@ -123,15 +123,7 @@ Sqrt Sqrt::operator*(const Sqrt &other) const {
 }
 
 Frac Sqrt::operator/(const Sqrt &other) {
-    try {
-        return {*this, other};
-    }
-    catch (domain_error &r) {
-        cerr << r.what() << endl;
-        throw;
-    }
-    return {{1, {}},
-            {1, {}}}; // should never be reached
+    return {*this, other};
 }
 
 bool Sqrt::operator==(const Sqrt &other) const {
@@ -140,4 +132,10 @@ bool Sqrt::operator==(const Sqrt &other) const {
 
 bool Sqrt::operator!=(const Sqrt &other) const {
     return !(*this == other);
+}
+
+double Sqrt::doublelize() const {
+    double res = static_cast<double> (rational);
+    for (auto x: irrational) res += x.second * sqrt(x.first);
+    return res;
 }

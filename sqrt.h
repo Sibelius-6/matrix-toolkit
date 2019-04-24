@@ -36,6 +36,8 @@ public:
     bool operator==(const Sqrt &other) const;
 
     bool operator!=(const Sqrt &other) const;
+
+    double doublelize() const;
 };
 
 #endif
