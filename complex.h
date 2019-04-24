@@ -3,6 +3,7 @@
 
 #include "fraction.h"
 #include <string>
+#include <complex>
 
 class Complex {
 public:
@@ -33,6 +34,8 @@ public:
     bool operator==(const Complex &other) const;
 
     bool operator!=(const Complex &other) const;
+
+    std::complex<double> doublelize() const;
 };
 
 Complex pow(const Complex &c, size_t n);

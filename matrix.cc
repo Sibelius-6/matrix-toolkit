@@ -361,7 +361,6 @@ Matrix Matrix::identity_matrix(size_t n) {
     return res;
 }
 
-
 Matrix Matrix::zero_matrix(size_t r, size_t c) {
     return Matrix{r, c};
 }

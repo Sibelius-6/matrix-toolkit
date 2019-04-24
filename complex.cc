@@ -4,6 +4,7 @@
 #include <iostream>
 #include <utility>
 #include <cmath>
+#include <complex>
 #include "fraction.h"
 #include "complex.h"
 
@@ -80,6 +81,11 @@ static Complex zero{{{0, {}}, {1, {}}},
                     {{0, {}}, {1, {}}}};
 static Complex one{{{1, {}}, {1, {}}},
                    {{0, {}}, {1, {}}}};
+
+
+complex<double> Complex::doublelize() const {
+    return complex<double> {1, 2};
+}
 
 Complex pow(const Complex &c, size_t n) {
     if (c == zero && n == 0)
