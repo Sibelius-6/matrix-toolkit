@@ -77,9 +77,10 @@ Frac::Frac(double d, bool precise): numer{Sqrt (0)}, denom{Sqrt (1)} {
             numer = Sqrt {d * i};
             denom = Sqrt {sign * i};
             simplify(numer, denom);
+            return;
         }
         catch (...) { // use Sqrt constructor to tell whether this guess of denom works
-            if (i == 10) throw logic_error("Have tried to convert this double :" + to_string(d) + " with ten denominators but can't find one. Consider using non-precise conversion.");
+            if (i == 10) throw logic_error("Have tried to convert this double: " + to_string(d) + " with ten denominators but can't find one. Consider using non-precise conversion.");
         }
     }
 }

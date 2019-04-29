@@ -3,12 +3,13 @@
 #include <stdexcept>
 #include "matrix.h"
 #include "complex.h"
-
+#include <complex>
+#include <cmath>
 using namespace std;
 
 
 int main() {
-    Matrix m {2, 3};
+/*    Matrix m {2, 3};
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 3; ++j) {
             cout << "\033[1;31m> Matrix M: row:" << i << " col:" << j << "\033[0m" << endl;
@@ -26,5 +27,8 @@ int main() {
         m.left_inverse().display();
     } else if (cmd == 'r') {
         m.right_inverse().display();
-    }
+    }*/
+
+    // convert testing
+    cout << complex_double_to_Complex(complex<double> ((sqrt(2) + 2) / 5, sqrt(3))) << endl;
 }
