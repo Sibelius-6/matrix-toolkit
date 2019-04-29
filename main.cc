@@ -30,5 +30,5 @@ int main() {
     }*/
 
     // convert testing
-    cout << complex_double_to_Complex(complex<double> ((sqrt(2) + 2) / 5, sqrt(3))) << endl;
+    cout << complex_double_to_Complex(complex<double> ((sqrt(2) + 2) / 5, sqrt(16))) << endl;
 }
