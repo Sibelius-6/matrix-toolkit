@@ -60,12 +60,12 @@ Frac::Frac(Sqrt n, Sqrt d) : numer{move(n)}, denom{move(d)} {
 }
 
 // precise specifies whether use approximate value => 1.414 = 1414/1000 or not (√2)
-Frac::Frac(double d, bool precise) {
+Frac::Frac(double d, bool precise): numer{Sqrt (0)}, denom{Sqrt (1)} {
 
     if (!precise || !d) {
         int tmp_numer = d * 10000;
-        numer = Sqrt(tmp_numer);
-        denom = Sqrt(10000);
+        numer = Sqrt {tmp_numer};
+        denom = Sqrt {10000};
         simplify(numer, denom);
         return;
     }
@@ -74,8 +74,8 @@ Frac::Frac(double d, bool precise) {
     d = abs(d);
     for (int i = 1; i <= 10; ++i) {
         try {
-            numer = Sqrt(d * i);
-            denom = Sqrt(sign * i);
+            numer = Sqrt {d * i};
+            denom = Sqrt {sign * i};
             simplify(numer, denom);
         }
         catch (...) { // use Sqrt constructor to tell whether this guess of denom works
