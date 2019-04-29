@@ -87,6 +87,11 @@ complex<double> Complex::doublelize() const {
     return complex<double> {real.doublelize(), im.doublelize()};
 }
 
+
+Complex complex_double_to_Complex(complex<double> c) {
+    return {(Frac){c.real()}, (Frac){c.imag()}};
+}
+
 Complex pow(const Complex &c, size_t n) {
     if (c == zero && n == 0)
         throw domain_error("can't have 0^0");

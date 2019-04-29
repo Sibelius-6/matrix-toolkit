@@ -59,6 +59,31 @@ Frac::Frac(Sqrt n, Sqrt d) : numer{move(n)}, denom{move(d)} {
     simplify(numer, denom);
 }
 
+// precise specifies whether use approximate value => 1.414 = 1414/1000 or not (√2)
+Frac::Frac(double d, bool precise) {
+
+    if (!precise || !d) {
+        int tmp_numer = d * 10000;
+        numer = Sqrt(tmp_numer);
+        denom = Sqrt(10000);
+        simplify(numer, denom);
+        return;
+    }
+
+    int sign = abs(d) / d;
+    d = abs(d);
+    for (int i = 1; i <= 10; ++i) {
+        try {
+            numer = Sqrt(d * i);
+            denom = Sqrt(sign * i);
+            simplify(numer, denom);
+        }
+        catch (...) { // use Sqrt constructor to tell whether this guess of denom works
+            if (i == 10) throw logic_error("Have tried to convert this double :" + to_string(d) + " with ten denominators but can't find one. Consider using non-precise conversion.");
+        }
+    }
+}
+
 string Frac::pretty_print() const {
     if (denom.rational == 1) return numer.pretty_print();
     return "(" + numer.pretty_print() + "/"

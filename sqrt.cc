@@ -57,6 +57,25 @@ Sqrt::Sqrt(int rational_, map <radicand, multiple> irrational_) :
     standardize(rational, irrational);
 }
 
+Sqrt::Sqrt(double d) {
+    if (abs(d - round(d)) <= 0.001) {
+        rational = round(d);
+        irrational = {};
+        return;
+    }
+    for (int i = -6; i <= 6; ++i) {
+        double tmp = d + i;
+        double tmp_sqr = tmp * tmp;
+        if (abs(tmp_sqr - round(tmp_sqr)) <= 0.001) {
+            rational = -i;
+            irrational = {{round(tmp_sqr), 1}};
+            standardize(rational, irrational);
+            return;
+        }
+        if (i == 6) throw logic_error("Sqrt can't be established");
+    }
+}
+
 Sqrt::Sqrt(const Sqrt &other) :
         rational{other.rational}, irrational{other.irrational} {
     standardize(rational, irrational);

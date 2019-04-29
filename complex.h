@@ -38,6 +38,8 @@ public:
     std::complex<double> doublelize() const;
 };
 
+Complex complex_double_to_Complex(std::complex<double> c);
+
 Complex pow(const Complex &c, size_t n);
 
 Complex pow_(const Complex &c, size_t n);

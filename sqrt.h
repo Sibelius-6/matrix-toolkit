@@ -15,7 +15,9 @@ public:
     std::map <radicand, multiple> irrational;
     // = rational + multiple * √radicand
 
-    Sqrt(int rational_, std::map <radicand, multiple> irrational_);
+    Sqrt(int rational_, std::map <radicand, multiple> irrational_ = {});
+
+    Sqrt(double d);
 
     Sqrt(const Sqrt &other);
 

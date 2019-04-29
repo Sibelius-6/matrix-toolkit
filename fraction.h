@@ -11,6 +11,7 @@ public:
 
     Frac(Sqrt n, Sqrt d);
 
+    Frac(double d, bool precise = true);
 
     std::string pretty_print() const;
 
