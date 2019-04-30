@@ -56,7 +56,7 @@ public:
 
     Complex *singular_values() const;
 
-    Complex *eigenvalues() const;
+    void eigenvalues(std::vector<Complex> &v) const;
 
     Complex spectral_radius() const;
 

@@ -7,6 +7,10 @@
 #include <algorithm>
 #include <stdexcept>
 
+// Eigen library
+#include <Eigen/Eigenvalues>
+using Eigen::EigenSolver;
+using Eigen::MatrixXcd;
 
 using namespace std;
 
@@ -210,10 +214,18 @@ size_t Matrix::index() const {
     return k;
 }
 
-Complex *Matrix::eigenvalues() const {
+void Matrix::eigenvalues(vector<Complex> &v) const {
     if (!square()) throw logic_error("Can't calculate eigenvalues for non-square matrix");
-    Complex res[1] = {Complex{1}};
-    return res;
+    MatrixXcd m(row, col);
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            m(i, j) = get_ij(i, j).doublelize();
+        }
+    }
+    EigenSolver<MatrixXcd> es(m);
+    for (auto ev : es.eigenvalues()) {
+        v.emplace_back(complex_double_to_Complex(ev));
+    }
 }
 
 // source http://rosettacode.org/wiki/Reduced_row_echelon_form#C.2B.2B

@@ -1,11 +1,16 @@
 CXX = g++-5
 CXXFLAGS = -std=c++14 -Wall -MMD
+EIGENFLAGS = -I eigen/ 
 EXEC = main
-OBJECTS = main.o matrix.o sqrt.o fraction.o complex.o
+OBJECTS = main.o sqrt.o fraction.o complex.o
 DEPENDS = ${OBJECTS:.o=.d}
 
+matrix.o: 
+	${CXX} ${CXXFLAGS} ${EIGENFLAGS} -c matrix.cc
+
 ${EXEC}: ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+	${CXX} ${CXXFLAGS} ${OBJECTS} matrix.o -o ${EXEC}
+
 
 -include ${DEPENDS}
 
