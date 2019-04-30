@@ -31,6 +31,10 @@ public:
 
     Complex operator/(const Complex &other);
 
+    bool operator<(const Complex &other) const;
+
+    bool operator>(const Complex &other) const;
+
     bool operator==(const Complex &other) const;
 
     bool operator!=(const Complex &other) const;

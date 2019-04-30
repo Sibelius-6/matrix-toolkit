@@ -27,4 +27,6 @@ int main() {
     for (auto ev : v) {
         cout << ev << endl;
     }
+
+    cout << "- and the spectral radius " << m.spectral_radius() << endl;
 }

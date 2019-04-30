@@ -50,9 +50,10 @@ public:
 
     size_t index() const; // nilpotent matrix
 
-    size_t geometric_multiplicity() const;
+    // these two methods will print the multiplicity
+    void geometric_multiplicity() const;
 
-    size_t algebraic_multiplicity() const;
+    void algebraic_multiplicity() const;
 
     Complex *singular_values() const;
 

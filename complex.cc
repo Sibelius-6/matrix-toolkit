@@ -77,6 +77,15 @@ bool Complex::operator!=(const Complex &other) const {
     return !(*this == other);
 }
 
+bool Complex::operator<(const Complex &other) const {
+    if (!Real() || !other.Real()) throw logic_error("Can't compare with non-real numbers");
+    return doublelize().real() < other.doublelize().real();
+}
+
+bool Complex::operator>(const Complex &other) const {
+    return ! (*this < other || *this == other);
+}
+
 static Complex zero{{{0, {}}, {1, {}}},
                     {{0, {}}, {1, {}}}};
 static Complex one{{{1, {}}, {1, {}}},

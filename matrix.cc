@@ -229,6 +229,17 @@ void Matrix::eigenvalues(vector<Complex> &v) const {
     }
 }
 
+Complex Matrix::spectral_radius() const {
+    vector <Complex> v;
+    eigenvalues(v);
+    Complex res {0};
+    for (Complex ev : v) {
+        Complex tmp = sqrt(ev.sqr_norm());
+        if (tmp > res) res = tmp;
+    }
+    return res;
+}
+
 // source http://rosettacode.org/wiki/Reduced_row_echelon_form#C.2B.2B
 void Matrix::RREF() {
     Complex zero{0};
