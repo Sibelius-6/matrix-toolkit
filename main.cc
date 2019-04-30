@@ -10,11 +10,9 @@ using namespace std;
 
 
 int main() {
-    int dim;
-    cin >> dim;
-    Matrix m {dim, dim};
-    for (int i = 0; i < dim; ++i) {
-        for (int j = 0; j < dim; ++j) {
+    Matrix m {3, 3};
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
             cout << "\033[1;31m> Matrix M: row:" << i << " col:" << j << "\033[0m" << endl;
             int mm;
             cin >> mm;
@@ -30,5 +28,5 @@ int main() {
         cout << ev << endl;
     }
 
-    cout << "- and the spectral radius " << m.spectral_radius() << endl;
+    m.algebraic_multiplicity();
 }

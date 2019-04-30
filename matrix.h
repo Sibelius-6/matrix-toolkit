@@ -50,16 +50,17 @@ public:
 
     size_t index() const; // nilpotent matrix
 
+
+    Complex *singular_values() const;
+
+    void eigenvalues(std::vector <Complex> &v) const;
+
+    Complex spectral_radius() const;
+
     // these two methods will print the multiplicity
     void geometric_multiplicity() const;
 
     void algebraic_multiplicity() const;
-
-    Complex *singular_values() const;
-
-    void eigenvalues(std::vector<Complex> &v) const;
-
-    Complex spectral_radius() const;
 
     // methods below will return a matrix or a vector
     void RREF();

@@ -9,6 +9,7 @@
 
 // Eigen library
 #include <Eigen/Eigenvalues>
+
 using Eigen::EigenSolver;
 using Eigen::MatrixXd;
 
@@ -214,7 +215,7 @@ size_t Matrix::index() const {
     return k;
 }
 
-void Matrix::eigenvalues(vector<Complex> &v) const {
+void Matrix::eigenvalues(vector <Complex> &v) const {
     if (!square()) throw logic_error("Can't calculate eigenvalues for non-square matrix");
     MatrixXd m(row, col);
     for (int i = 0; i < row; ++i) {
@@ -223,7 +224,7 @@ void Matrix::eigenvalues(vector<Complex> &v) const {
             m(i, j) = get_ij(i, j).doublelize().real();
         }
     }
-    EigenSolver<MatrixXd> es(m);
+    EigenSolver <MatrixXd> es(m);
     for (size_t x = 0; x < row; ++x) {
         v.emplace_back(complex_double_to_Complex(es.eigenvalues()[x]));
     }
@@ -232,12 +233,22 @@ void Matrix::eigenvalues(vector<Complex> &v) const {
 Complex Matrix::spectral_radius() const {
     vector <Complex> v;
     eigenvalues(v);
-    Complex res {0};
+    Complex res{0};
     for (Complex ev : v) {
         Complex tmp = sqrt(ev.sqr_norm());
         if (tmp > res) res = tmp;
     }
     return res;
+}
+
+void Matrix::algebraic_multiplicity() const {
+    cout << endl << "\033[1;31m Algebraic Multiplicity\033[0m" << endl;
+    vector <Complex> evs;
+    eigenvalues(evs);
+    for (Complex ev : evs) {
+        cout << ev << " :  " << count(evs.begin(), evs.end(), ev) << endl;
+    }
+    cout << endl;
 }
 
 // source http://rosettacode.org/wiki/Reduced_row_echelon_form#C.2B.2B
@@ -366,7 +377,7 @@ bool Matrix::nilpotent() const {
 
 bool Matrix::upper_triangular() const {
     if (!square()) throw logic_error("We don't discuss triangular properties with non-square");
-    Complex zero {0};
+    Complex zero{0};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
             if (j < i && get_ij(i, j) != zero) return false;
