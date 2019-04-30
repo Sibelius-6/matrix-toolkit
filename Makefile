@@ -1,20 +1,13 @@
-CXX = g++-5
-CXXFLAGS = -std=c++14 -Wall -MMD
-EIGENFLAGS = -I eigen/ 
-EXEC = main
-OBJECTS = main.o sqrt.o fraction.o complex.o
-DEPENDS = ${OBJECTS:.o=.d}
+main: main.o matrix.o sqrt.o fraction.o complex.o
+	g++-5 -std=c++14 -Wall main.o matrix.o sqrt.o fraction.o complex.o -o main
 
-matrix.o: 
-	${CXX} ${CXXFLAGS} ${EIGENFLAGS} -c matrix.cc
-
-${EXEC}: ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} matrix.o -o ${EXEC}
-
-
--include ${DEPENDS}
-
-.PHONY: clean
-
-clean:
-	rm ${OBJECTS} ${EXEC} ${DEPENDS}
+sqrt.o: sqrt.cc sqrt.h
+	g++-5 -std=c++14 -Wall -c sqrt.cc
+fraction.o: fraction.cc fraction.h sqrt.h
+	g++-5 -std=c++14 -Wall -c fraction.cc
+complex.o: complex.cc complex.h fraction.h
+	g++-5 -std=c++14 -Wall -c complex.cc
+matrix.o: matrix.cc matrix.h complex.h
+	g++-5 -std=c++14 -Wall -I eigen/ -c matrix.cc
+main.o: matrix.h complex.h main.cc
+	g++-5 -std=c++14 -Wall -c main.cc

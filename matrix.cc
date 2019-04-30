@@ -10,7 +10,7 @@
 // Eigen library
 #include <Eigen/Eigenvalues>
 using Eigen::EigenSolver;
-using Eigen::MatrixXcd;
+using Eigen::MatrixXd;
 
 using namespace std;
 
@@ -216,15 +216,16 @@ size_t Matrix::index() const {
 
 void Matrix::eigenvalues(vector<Complex> &v) const {
     if (!square()) throw logic_error("Can't calculate eigenvalues for non-square matrix");
-    MatrixXcd m(row, col);
+    MatrixXd m(row, col);
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
-            m(i, j) = get_ij(i, j).doublelize();
+            if (!get_ij(i, j).Real()) throw logic_error("Sorry, EigenSolver library doesn't support Complex Matrices");
+            m(i, j) = get_ij(i, j).doublelize().real();
         }
     }
-    EigenSolver<MatrixXcd> es(m);
-    for (auto ev : es.eigenvalues()) {
-        v.emplace_back(complex_double_to_Complex(ev));
+    EigenSolver<MatrixXd> es(m);
+    for (size_t x = 0; x < row; ++x) {
+        v.emplace_back(complex_double_to_Complex(es.eigenvalues()[x]));
     }
 }
 

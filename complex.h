@@ -35,6 +35,8 @@ public:
 
     bool operator!=(const Complex &other) const;
 
+    inline bool Real() const { return im == Frac{0.0}; }
+
     std::complex<double> doublelize() const;
 };
 
