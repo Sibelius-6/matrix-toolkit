@@ -27,13 +27,13 @@ public:
 
     std::string pretty_print() const;
 
-    Sqrt operator+(const Sqrt &other);
+    Sqrt operator+(const Sqrt &other) const;
 
-    Sqrt operator-(const Sqrt &other);
+    Sqrt operator-(const Sqrt &other) const;
 
     Sqrt operator*(const Sqrt &other) const;
 
-    Frac operator/(const Sqrt &other);
+    Frac operator/(const Sqrt &other) const;
 
     bool operator==(const Sqrt &other) const;
 

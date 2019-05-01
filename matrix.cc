@@ -61,7 +61,7 @@ const Complex &Matrix::get_ij(int i, int j) const {
     return data[i][j];
 }
 
-Matrix Matrix::operator+(const Matrix &other) {
+Matrix Matrix::operator+(const Matrix &other) const {
     // add exception later on for checking whether two matrices have same dimension
     Matrix res{row, col};
     for (int i = 0; i < row; ++i) {
@@ -72,7 +72,7 @@ Matrix Matrix::operator+(const Matrix &other) {
     return res;
 }
 
-Matrix Matrix::operator-(const Matrix &other) {
+Matrix Matrix::operator-(const Matrix &other) const {
     Matrix res{row, col};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
@@ -242,11 +242,28 @@ Complex Matrix::spectral_radius() const {
 }
 
 void Matrix::algebraic_multiplicity() const {
-    cout << endl << "\033[1;31m Algebraic Multiplicity\033[0m" << endl;
+    cout << endl << "\033[1;31m***** Algebraic Multiplicity *****\033[0m" << endl;
     vector <Complex> evs;
     eigenvalues(evs);
     for (Complex ev : evs) {
         cout << ev << " :  " << count(evs.begin(), evs.end(), ev) << endl;
+    }
+    cout << endl;
+}
+
+static size_t geometric_multiplicity_helper(const Complex &c, const Matrix &A) {
+    if (!A.square()) throw logic_error("Can't find geometric multiplicity");
+    Matrix A_lambda_I = A - c * A.identity_matrix(A.getR());
+    // rank-nullity theorem
+    return A_lambda_I.getC() - A_lambda_I.rank();
+}
+
+void Matrix::geometric_multiplicity() const {
+    cout << endl << "\033[1;31m***** Geometric Multiplicity *****\033[0m" << endl;
+    vector <Complex> evs;
+    eigenvalues(evs);
+    for (Complex ev : evs) {
+        cout << ev << " :  " << geometric_multiplicity_helper(ev, *this)<< endl;
     }
     cout << endl;
 }
@@ -372,6 +389,12 @@ bool Matrix::normal() const {
 
 bool Matrix::nilpotent() const {
     // using all eigenvalues = 0 to get this result
+    vector <Complex> evs;
+    eigenvalues(evs);
+    for (Complex ev : evs) {
+        Complex zero;
+        if (ev != zero) return false;
+    }
     return true;
 }
 

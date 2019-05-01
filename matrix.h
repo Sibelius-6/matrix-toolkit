@@ -25,9 +25,9 @@ public:
 
     inline int getC() const { return col; }
 
-    Matrix operator+(const Matrix &other);
+    Matrix operator+(const Matrix &other) const;
 
-    Matrix operator-(const Matrix &other);
+    Matrix operator-(const Matrix &other) const;
 
     Matrix operator*(const Matrix &other) const;
 

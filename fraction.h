@@ -15,13 +15,13 @@ public:
 
     std::string pretty_print() const;
 
-    Frac operator+(const Frac &other);
+    Frac operator+(const Frac &other) const;
 
-    Frac operator-(const Frac &other);
+    Frac operator-(const Frac &other) const;
 
     Frac operator*(const Frac &other) const;
 
-    Frac operator/(const Frac &other);
+    Frac operator/(const Frac &other) const;
 
     bool operator==(const Frac &other) const;
 

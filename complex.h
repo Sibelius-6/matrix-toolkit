@@ -23,13 +23,13 @@ public:
 
     Complex sqr_norm() const;
 
-    Complex operator+(const Complex &other);
+    Complex operator+(const Complex &other) const;
 
-    Complex operator-(const Complex &other);
+    Complex operator-(const Complex &other) const;
 
     Complex operator*(const Complex &other) const;
 
-    Complex operator/(const Complex &other);
+    Complex operator/(const Complex &other) const;
 
     bool operator<(const Complex &other) const;
 

@@ -29,4 +29,6 @@ int main() {
     }
 
     m.algebraic_multiplicity();
+
+    m.geometric_multiplicity();
 }

@@ -50,11 +50,11 @@ Complex Complex::conjugate() const {
 Complex Complex::sqr_norm() const { return (*this) * conjugate(); }
 
 
-Complex Complex::operator+(const Complex &other) {
+Complex Complex::operator+(const Complex &other) const {
     return {real + other.real, im + other.im};
 }
 
-Complex Complex::operator-(const Complex &other) {
+Complex Complex::operator-(const Complex &other) const {
     return {real - other.real, im - other.im};
 }
 
@@ -63,7 +63,7 @@ Complex Complex::operator*(const Complex &other) const {
             real * other.im + im * other.real};
 }
 
-Complex Complex::operator/(const Complex &other) {
+Complex Complex::operator/(const Complex &other) const {
     Frac denom = other.sqr_norm().real;
     Complex tmp = (*this) * other.conjugate();
     return {tmp.real / denom, tmp.im / denom};

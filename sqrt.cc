@@ -108,7 +108,7 @@ string Sqrt::pretty_print() const {
     return "(" + rat + irr + ")";
 }
 
-Sqrt Sqrt::operator+(const Sqrt &other) {
+Sqrt Sqrt::operator+(const Sqrt &other) const {
     map <radicand, multiple> res_i = irrational;
     for (const auto &p : other.irrational) {
         map_add(res_i, p.first, p.second);
@@ -116,7 +116,7 @@ Sqrt Sqrt::operator+(const Sqrt &other) {
     return {rational + other.rational, res_i};
 }
 
-Sqrt Sqrt::operator-(const Sqrt &other) {
+Sqrt Sqrt::operator-(const Sqrt &other) const {
     map <radicand, multiple> res_i = irrational;
     for (const auto &p : other.irrational) {
         map_add(res_i, p.first, -p.second);
@@ -141,7 +141,7 @@ Sqrt Sqrt::operator*(const Sqrt &other) const {
     return {res_r, res_i};
 }
 
-Frac Sqrt::operator/(const Sqrt &other) {
+Frac Sqrt::operator/(const Sqrt &other) const {
     return {*this, other};
 }
 

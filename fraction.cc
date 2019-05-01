@@ -92,13 +92,13 @@ string Frac::pretty_print() const {
 }
 
 
-Frac Frac::operator+(const Frac &other) {
+Frac Frac::operator+(const Frac &other) const {
     return {numer * other.denom + denom * other.numer,
             denom * other.denom};
 }
 
 
-Frac Frac::operator-(const Frac &other) {
+Frac Frac::operator-(const Frac &other) const {
     return {numer * other.denom - denom * other.numer,
             denom * other.denom};
 }
@@ -109,7 +109,7 @@ Frac Frac::operator*(const Frac &other) const {
 }
 
 
-Frac Frac::operator/(const Frac &other) {
+Frac Frac::operator/(const Frac &other) const {
     return {numer * other.denom, denom * other.numer};
 }
 
