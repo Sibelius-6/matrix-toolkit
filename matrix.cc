@@ -245,8 +245,10 @@ void Matrix::algebraic_multiplicity() const {
     cout << endl << "\033[1;31m***** Algebraic Multiplicity *****\033[0m" << endl;
     vector <Complex> evs;
     eigenvalues(evs);
+    int adjust = 0;
+    for (Complex ev : evs) adjust = max(adjust, ev.placeHolder());
     for (Complex ev : evs) {
-        cout << ev << " :  " << count(evs.begin(), evs.end(), ev) << endl;
+        cout << ev.reformat(adjust) << " :  " << count(evs.begin(), evs.end(), ev) << endl;
     }
     cout << endl;
 }
@@ -262,8 +264,10 @@ void Matrix::geometric_multiplicity() const {
     cout << endl << "\033[1;31m***** Geometric Multiplicity *****\033[0m" << endl;
     vector <Complex> evs;
     eigenvalues(evs);
+    int adjust = 0;
+    for (Complex ev : evs) adjust = max(adjust, ev.placeHolder());
     for (Complex ev : evs) {
-        cout << ev << " :  " << geometric_multiplicity_helper(ev, *this)<< endl;
+        cout << ev.reformat(adjust) << " :  " << geometric_multiplicity_helper(ev, *this)<< endl;
     }
     cout << endl;
 }
@@ -411,6 +415,18 @@ bool Matrix::upper_triangular() const {
 
 bool Matrix::lower_triangular() const {
     return transpose().upper_triangular();
+}
+
+bool Matrix::diagonalizable() const {
+    if (!square()) return false;
+    vector <Complex> evs;
+    eigenvalues(evs);
+    for (Complex ev : evs) {
+        size_t g = geometric_multiplicity_helper(ev, *this);
+        size_t a = count(evs.begin(), evs.end(), ev);
+        if (a != g) return false;
+    }
+    return true;
 }
 
 Matrix Matrix::identity_matrix(size_t n) {

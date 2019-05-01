@@ -10,9 +10,12 @@ using namespace std;
 
 
 int main() {
-    Matrix m {3, 3};
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
+    cout << "\033[1;31mEnter Your Dimension\033[0m" << endl;
+    int dim;
+    cin >> dim;
+    Matrix m {dim, dim};
+    for (int i = 0; i < dim; ++i) {
+        for (int j = 0; j < dim; ++j) {
             cout << "\033[1;31m> Matrix M: row:" << i << " col:" << j << "\033[0m" << endl;
             int mm;
             cin >> mm;
@@ -31,4 +34,7 @@ int main() {
     m.algebraic_multiplicity();
 
     m.geometric_multiplicity();
+
+    if (m.diagonalizable()) cout << "diagonalizable" << endl;
+    else cout << "not diagonalizable" << endl;
 }
