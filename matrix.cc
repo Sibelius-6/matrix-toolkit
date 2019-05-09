@@ -429,6 +429,23 @@ bool Matrix::diagonalizable() const {
     return true;
 }
 
+// here starts the decomposition
+/*void Matrix::diagonalization() const {
+    if (!diagonalizable()) throw logic_error("Not diagonalizable");
+    vector <Complex> evs;
+    eigenvalues(evs);
+    sort(evs.begin(), evs.end());
+    int i = 0;
+    Matrix P {row, col};
+    while (i < col) {
+        Complex ev = evs[i];
+        size_t multiplicity = count(evs.begin(), evs.end(), ev);
+        Matrix A_lambda_I = *this - ev * identity_matrix(getR());
+        A_lambda_I.RREF();
+        i += multiplicity;
+    }
+}*/
+
 Matrix Matrix::identity_matrix(size_t n) {
     Matrix res{n, n};
     for (int i = 0; i < n; ++i) res.set_ij(i, i, 1);

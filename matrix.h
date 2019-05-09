@@ -51,7 +51,7 @@ public:
     size_t index() const; // nilpotent matrix
 
 
-    Complex *singular_values() const;
+    void singular_values(std::vector <Complex> &v) const;
 
     void eigenvalues(std::vector <Complex> &v) const;
 
@@ -71,17 +71,9 @@ public:
 
     Matrix right_inverse() const;
 
-    Matrix cofactor() const;
-
-    Matrix adjoint() const;
-
     Matrix transpose() const;
 
     Matrix conjugate() const;
-
-    Matrix diagonalize() const;
-
-    Matrix orthogonal_diagonalize() const;
 
     // methods below are to determine whether this matrix meets or not
     inline bool square() const { return col == row; }
@@ -110,8 +102,15 @@ public:
 
 
 
-    // decomposition
+    // decomposition: will print the result
     // rank_decomposition singular_value_decomposition
+    /*void diagonalization() const;
+
+    void orthogonal_diagonalization() const;
+
+    void rank_decomposition() const;
+
+    void singular_value_decomposition() const;*/
 
     // methods below are static, it can return a specific type of matrix
     static Matrix identity_matrix(size_t n);
