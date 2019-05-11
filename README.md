@@ -1,4 +1,6 @@
 # matrix-toolkit
+## Installation & Start-up
+To install, you can download all source files by `git clone` then create an excutable by `make`.
 
 ## Prerequisites
 If you have taken first (math 136) and second (math 235) linear algebra courses, you should be fine.
