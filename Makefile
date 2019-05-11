@@ -1,5 +1,5 @@
-main: main.o matrix.o sqrt.o fraction.o complex.o
-	g++-5 -std=c++14 -Wall main.o matrix.o sqrt.o fraction.o complex.o -o main
+matrix: main.o matrix.o sqrt.o fraction.o complex.o
+	g++-5 -std=c++14 -Wall main.o matrix.o sqrt.o fraction.o complex.o -o matrix
 
 sqrt.o: sqrt.cc sqrt.h
 	g++-5 -std=c++14 -Wall -c sqrt.cc
