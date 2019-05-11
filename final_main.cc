@@ -93,9 +93,12 @@ int main() {
             cout << endl << "\033[1;7m> Short Help Page <\033[0m" << endl;
             cout << "\033[1;1mhelp\033[0m: help page" << endl;
             cout << "\033[1;1mclear\033[0m: clear the page" << endl;
+            cout << "\033[1;1mq\033[0m or \033[1;1mquit\033[0m: quit" << endl;
             cout << "\033[1;1mread-matrix\033[0m: input a matrix" << endl;
             cout << "\033[1;1mls\033[0m: list all current matrices that were inputted" << endl;
             cout << endl; // the end of help page
+        } else {
+            cerr << "\033[1;2mUnrecognized command: \033[0m" << cmd << "\033[1;2m. See 'help'. \033[0m" << endl;
         }
         cout << "\033[1;2mYour command is \033[0m" << cmd << endl;
     }
