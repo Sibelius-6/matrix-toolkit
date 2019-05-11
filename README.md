@@ -2,6 +2,10 @@
 ## Installation & Start-up
 To install, you can download all source files by `git clone` then create an excutable by `make`.
 
+`Makefile` has created an excutable called `matrix`. Run this executable by `./matrix`, then type command `help` to see the following usage.
+
+For the full usage and examples, please consult [here](https://sibelius-6.github.io/projects/matrix-toolkit/).
+
 ## Prerequisites
 If you have taken first (math 136) and second (math 235) linear algebra courses, you should be fine.
 ### left & right inverse
