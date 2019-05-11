@@ -1,6 +1,6 @@
 # matrix-toolkit
 ## Installation & Start-up
-To install, you can download all source files by `git clone` then create an excutable by `make`.
+To install, you can download all source files by `git clone https://github.com/Sibelius-6/matrix-toolkit/` then create an excutable by `make`.
 
 `Makefile` has created an excutable called `matrix`. Run this executable by `./matrix`, then type command `help` to see the following usage.
 
