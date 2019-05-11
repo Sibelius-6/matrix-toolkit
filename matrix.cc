@@ -62,7 +62,7 @@ const Complex &Matrix::get_ij(int i, int j) const {
 }
 
 Matrix Matrix::operator+(const Matrix &other) const {
-    // add exception later on for checking whether two matrices have same dimension
+    if (row != other.getR() || col != other.getC()) throw logic_error("Dimension doesn't match");
     Matrix res{row, col};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
@@ -73,6 +73,7 @@ Matrix Matrix::operator+(const Matrix &other) const {
 }
 
 Matrix Matrix::operator-(const Matrix &other) const {
+    if (row != other.getR() || col != other.getC()) throw logic_error("Dimension doesn't match");
     Matrix res{row, col};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < col; ++j) {
@@ -83,7 +84,7 @@ Matrix Matrix::operator-(const Matrix &other) const {
 }
 
 Matrix Matrix::operator*(const Matrix &other) const {
-    if (col != other.getR()) throw logic_error("Can't do matrix multiplication");
+    if (col != other.getR()) throw logic_error("Dimension doesn't match");
     Matrix res{row, other.getC()};
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < other.getC(); ++j) {
@@ -227,6 +228,21 @@ void Matrix::eigenvalues(vector <Complex> &v) const {
     EigenSolver <MatrixXd> es(m);
     for (size_t x = 0; x < row; ++x) {
         v.emplace_back(complex_double_to_Complex(es.eigenvalues()[x]));
+    }
+}
+
+void Matrix::singular_values() const {
+    Matrix AT_times_A = transpose() * (*this);
+    vector <Complex> v;
+    AT_times_A.eigenvalues(v);
+    for (auto ev : v) {
+        try {
+            cout << sqrt(ev) << endl;
+        }
+        catch (const exception &e) {
+            cout << ">Have some trouble calculating sqrt, since " << e.what() << endl;
+            cout << ">So the square of this singular value is " << ev;
+        }
     }
 }
 

@@ -51,9 +51,9 @@ public:
     size_t index() const; // nilpotent matrix
 
 
-    void singular_values(std::vector <Complex> &v) const;
-
     void eigenvalues(std::vector <Complex> &v) const;
+
+    void singular_values() const;
 
     Complex spectral_radius() const;
 

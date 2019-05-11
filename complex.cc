@@ -122,8 +122,8 @@ Complex pow_(const Complex &c, size_t n) {
 //	sqrt (√3), imaginary part not zero (1 + 2i)
 //	thus the only number can be square rooted is  rational numbers
 Complex sqrt(const Complex &c) {
-    if (c.im != zero.im) throw domain_error("complex number can't be sqrt-ed");
-    if (c.real.numer.irrational.size()) throw domain_error("sqrt can't be sqrt-ed");
+    if (c.im != zero.im) throw logic_error("complex number can't be sqrt-ed");
+    if (c.real.numer.irrational.size()) throw logic_error("sqrt can't be sqrt-ed");
     int numer_ = c.real.numer.rational;
     int denom_ = c.real.denom.rational;
     if (numer_ * denom_ >= 0)
