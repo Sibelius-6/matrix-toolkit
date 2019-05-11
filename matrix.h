@@ -15,7 +15,7 @@ class Matrix {
     void add_multiple_row(int i, int k, const Complex &v);
 
 public:
-    Matrix(int row, int col);
+    Matrix(int row = 1, int col = 1);
 
     void set_ij(int i, int j, const Complex &value);
 

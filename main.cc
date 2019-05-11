@@ -173,8 +173,6 @@ int main() {
             }
 
             if (type == "binary") {
-                cout << "\033[1;4m> Choose from:\033[0m" << endl;
-                cout << "+      -       *" << endl;
                 cout << "\033[1;4m> Select first argument:\033[0m" << endl;
                 string first, second, op;
                 cin >> first;
@@ -183,9 +181,9 @@ int main() {
                          << endl;
                     cin >> first;
                 }
-                cout << "\033[1;4m> Select the operation:\033[0m" << endl;
+                cout << "\033[1;4m> Select the operation:\033[0m (+ - *)" << endl;
                 cin >> op;
-                while (op != "+" && op != "*" && op != "*") {
+                while (op != "+" && op != "-" && op != "*") {
                     cerr << "\033[1;31mError\033[0m: operation is not valid." << endl;
                     cin >> op;
                 }
@@ -197,12 +195,13 @@ int main() {
                     cin >> second;
                 }
                 try {
+                    Matrix res;
                     if (op == "+") {
-                        Matrix res = matrices[first] + matrices[second];
+                        res = matrices[first] + matrices[second];
                     } else if (op == "-") {
-                        Matrix res = matrices[first] - matrices[second];
+                        res = matrices[first] - matrices[second];
                     } else {
-                        Matrix res = matrices[first] * matrices[second];
+                        res = matrices[first] * matrices[second];
                     }
 
                     cout << endl << first << " " << op << " " << second << " is " << endl << res;
@@ -221,9 +220,10 @@ int main() {
                                  << endl;
                             cin >> res_name;
                         }
+                        matrices.insert(pair<string, Matrix>(res_name, res));
                     }
                 } catch (const exception &e) {
-                    cerr << "Sorry, " << op << "cannot be done, because " << e.what() << endl;
+                    cerr << "Sorry, " << op << " cannot be done, because " << e.what() << endl;
                     cerr << "Please restart your operation." << endl;
                 }
 
