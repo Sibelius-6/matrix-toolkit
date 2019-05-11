@@ -100,7 +100,7 @@ void matrixRead(map <string, Matrix> &m, bool quickmode = false) {
         }
     } while (confirm != "y");
     m.insert(pair<string, Matrix>(name, matrix));
-    cout << "\033[1;34m> Matrix " << name << "is successfully read in!\033[0m" << endl;
+    cout << "\033[1;34m> Matrix " << name << " is successfully read in!\033[0m" << endl;
 }
 
 int main() {
@@ -146,6 +146,8 @@ int main() {
             matrixRead(matrices);
         } else if (cmd == "quick-read") {
             matrixRead(matrices, true);
+        } else if (cmd == "quit" || cmd == "q") {
+            break;
         } else {
             cerr << "\033[1;2mUnrecognized command: \033[0m" << cmd << "\033[1;2m. See 'help'. \033[0m" << endl;
         }
